@@ -1,0 +1,28 @@
+# Autonomous Development Platform Dependencies
+# All open-source tools
+
+# Core agent framework
+aider-chat>=0.37.0
+langchain>=0.1.0
+langchain-community>=0.0.10
+
+# LLM integration
+ollama>=0.1.0
+
+# Code analysis and generation
+tree-sitter>=0.20.0
+libcst>=1.1.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Deployment
+docker>=6.1.0
+python-dotenv>=1.0.0
+
+# Utilities
+rich>=13.0.0
+typer>=0.9.0
+pydantic>=2.0.0
+
