@@ -402,3 +402,120 @@ If you find this project useful, please consider giving it a star!
 
 *Last Updated: October 16, 2025*
 
+
+## 🔬 Enhanced Installation Features
+
+### Pre-Flight Validation
+
+Before installation, run a comprehensive system check:
+
+```bash
+./scripts/preflight-check.sh
+```
+
+This validates:
+- ✅ Operating system compatibility
+- ✅ RAM and disk space requirements
+- ✅ GPU detection (optional)
+- ✅ Required dependencies
+- ✅ Network connectivity
+- ✅ Existing installations
+
+### Dry-Run Mode
+
+Preview what will be installed without making any changes:
+
+```bash
+./install-enhanced.sh --dry-run
+```
+
+Perfect for:
+- Understanding installation steps
+- Verifying system compatibility
+- Safe exploration before committing
+
+### Installation Options
+
+```bash
+# Standard installation (recommended)
+./install-enhanced.sh
+
+# Preview without changes
+./install-enhanced.sh --dry-run
+
+# Force install (skip checks)
+./install-enhanced.sh --force
+
+# Skip pre-flight validation
+./install-enhanced.sh --skip-preflight
+```
+
+### Verification & Auto-Fix
+
+After installation, verify and fix any issues:
+
+```bash
+# Interactive menu
+./scripts/verify-and-fix.sh
+
+# Auto-verify all components
+./scripts/verify-and-fix.sh --verify-all
+
+# Run health check
+./scripts/verify-and-fix.sh --health-check
+
+# Rollback installation
+./scripts/verify-and-fix.sh --rollback
+```
+
+### Comprehensive Testing
+
+Run the full test suite:
+
+```bash
+cd tests
+./test-install.sh
+```
+
+Tests include:
+- Script syntax validation
+- JSON configuration validation
+- Installation verification
+- Integration tests
+- Performance tests
+- Security checks
+- Documentation completeness
+
+## 🛡️ Safety Features
+
+### Automatic Backups
+- All configurations backed up before changes
+- Timestamped backup directories
+- Easy rollback with one command
+
+### Graceful Degradation
+- Missing components handled gracefully
+- Appropriate models selected based on RAM
+- Clear error messages with solutions
+
+### Error Recovery
+- Automatic retry logic
+- Service health monitoring
+- Self-healing capabilities
+
+### Comprehensive Logging
+- All actions logged to `~/.ai-coding-stack/install.log`
+- Detailed error context
+- Easy troubleshooting
+
+## 📊 Validation Status
+
+✅ **All scripts syntax validated**  
+✅ **All JSON configs validated**  
+✅ **Comprehensive test coverage**  
+✅ **Security audit passed**  
+✅ **Cross-platform tested (Linux, macOS)**  
+✅ **Production ready**
+
+See [VALIDATION_REPORT.md](VALIDATION_REPORT.md) for complete validation details.
+
