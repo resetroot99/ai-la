@@ -1,0 +1,13 @@
+[Unit]
+Description=AI-LA Autonomous Development Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=%i
+ExecStart=/usr/bin/python3 %h/.ai-la/ai-la-daemon.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
