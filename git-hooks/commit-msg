@@ -1,0 +1,30 @@
+#!/bin/bash
+# AI-powered commit message generation
+
+COMMIT_MSG_FILE=$1
+
+if [ -f "$COMMIT_MSG_FILE" ] && [ -s "$COMMIT_MSG_FILE" ]; then
+    # User provided message, skip AI
+    exit 0
+fi
+
+DIFF=$(git diff --cached)
+
+if [ -z "$DIFF" ]; then
+    exit 0
+fi
+
+echo "🤖 Generating commit message..."
+
+MSG=$(curl -s http://localhost:11434/api/generate -d "{
+  \"model\": \"qwen2.5-coder:7b\",
+  \"prompt\": \"Generate a conventional commit message (type(scope): description) for:\n\n$DIFF\",
+  \"stream\": false
+}" 2>/dev/null | jq -r .response 2>/dev/null | head -1)
+
+if [ -n "$MSG" ]; then
+    echo "$MSG" > "$COMMIT_MSG_FILE"
+    echo "✅ Generated: $MSG"
+fi
+
+exit 0

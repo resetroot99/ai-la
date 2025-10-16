@@ -1,0 +1,35 @@
+#!/bin/bash
+# AI-powered pre-commit hook
+
+echo "🤖 Running AI code review..."
+
+DIFF=$(git diff --cached)
+
+if [ -z "$DIFF" ]; then
+    exit 0
+fi
+
+REVIEW=$(curl -s http://localhost:11434/api/generate -d "{
+  \"model\": \"qwen2.5-coder:7b\",
+  \"prompt\": \"Quick security and bug review:\n\n$DIFF\",
+  \"stream\": false
+}" 2>/dev/null | jq -r .response 2>/dev/null)
+
+if [ -z "$REVIEW" ]; then
+    echo "⚠️  AI review unavailable (Ollama not running)"
+    exit 0
+fi
+
+if echo "$REVIEW" | grep -qi "critical\|security\|vulnerability"; then
+    echo "❌ Critical issues found:"
+    echo "$REVIEW"
+    echo ""
+    read -p "Continue anyway? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+fi
+
+echo "✅ AI review passed"
+exit 0
