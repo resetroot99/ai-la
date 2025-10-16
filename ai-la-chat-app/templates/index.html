@@ -134,11 +134,35 @@
             border-bottom: 1px solid #2a2a2a;
         }
 
-        .decision-item:last-child, .prediction-item:last-child {
+        .decision-item:last-child        .prediction-item:last-child {
             border-bottom: none;
         }
 
-        .decision-label {
+        .tecp-receipt {
+            background: #1a1a2a;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #9d4edd;
+            margin: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        .tecp-receipt-header {
+            color: #9d4edd;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .tecp-hash {
+            color: #aaa;
+            font-size: 0.75rem;
+        }
+
+        .tecp-verified {
+            color: #00d084;
+            font-weight: 600;
+        }    .decision-label {
             color: #888;
             font-size: 0.875rem;
         }
@@ -353,6 +377,14 @@
                     <div class="command-name">help</div>
                     <div class="command-desc">Show help information</div>
                 </div>
+                <div class="command" data-command="tecp">
+                    <div class="command-name">tecp</div>
+                    <div class="command-desc">Show TECP verification</div>
+                </div>
+                <div class="command" data-command="verify">
+                    <div class="command-name">verify</div>
+                    <div class="command-desc">Verification status</div>
+                </div>
             </div>
 
             <div class="sidebar-section">
@@ -492,6 +524,16 @@
                         </div>
                     `;
                     outputDiv.appendChild(decisionsDiv);
+                } else if (data.type === 'tecp') {
+                    const tecpDiv = document.createElement('div');
+                    tecpDiv.className = 'tecp-receipt';
+                    tecpDiv.innerHTML = `
+                        <div class="tecp-receipt-header">TECP Receipt: ${data.data.operation}</div>
+                        <div class="tecp-hash">Hash: ${data.data.receipt_hash}</div>
+                        <div class="tecp-hash">Chain Index: ${data.data.chain_index}</div>
+                        <div class="tecp-verified">Verified</div>
+                    `;
+                    outputDiv.appendChild(tecpDiv);
                 } else if (data.type === 'predictions') {
                     const predictionsDiv = document.createElement('div');
                     predictionsDiv.className = 'predictions';
