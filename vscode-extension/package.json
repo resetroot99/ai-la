@@ -1,0 +1,119 @@
+{
+  "name": "ai-la-agent",
+  "displayName": "AI-LA Agent",
+  "description": "Autonomous AI development agent with cryptographic verification",
+  "version": "1.0.0",
+  "publisher": "ai-la",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "autonomous",
+    "agent",
+    "code generation",
+    "assistant"
+  ],
+  "activationEvents": [
+    "onCommand:ai-la.buildFeature",
+    "onCommand:ai-la.chat",
+    "onCommand:ai-la.analyze"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-la.buildFeature",
+        "title": "AI-LA: Build Feature"
+      },
+      {
+        "command": "ai-la.chat",
+        "title": "AI-LA: Open Chat"
+      },
+      {
+        "command": "ai-la.analyze",
+        "title": "AI-LA: Analyze Project"
+      },
+      {
+        "command": "ai-la.verify",
+        "title": "AI-LA: Verify Changes (TECP)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-la-sidebar",
+          "title": "AI-LA Agent",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ai-la-sidebar": [
+        {
+          "id": "ai-la-chat",
+          "name": "Chat"
+        },
+        {
+          "id": "ai-la-tasks",
+          "name": "Active Tasks"
+        },
+        {
+          "id": "ai-la-history",
+          "name": "History (TECP)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI-LA Agent",
+      "properties": {
+        "ai-la.model": {
+          "type": "string",
+          "default": "local",
+          "enum": ["local", "cloud"],
+          "description": "Model type: local (free) or cloud (premium)"
+        },
+        "ai-la.localModel": {
+          "type": "string",
+          "default": "qwen2.5-coder:7b",
+          "description": "Local model to use (requires Ollama)"
+        },
+        "ai-la.enableTECP": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable TECP cryptographic verification"
+        },
+        "ai-la.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for premium features (optional)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/resetroot99/ai-la"
+  },
+  "license": "MIT"
+}
