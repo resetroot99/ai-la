@@ -1,0 +1,114 @@
+{
+  "profile_version": "1.0",
+  "developer_identity": {
+    "type": "systems_architect",
+    "philosophy": "code_with_intent_and_autonomy",
+    "approach": "stacked_ecosystem_thinking"
+  },
+  "core_principles": {
+    "design_rule": "clarity_over_clutter",
+    "dependencies": "minimal_deep_control",
+    "architecture": "modular_self_improving_explainable",
+    "security": "early_and_pervasive",
+    "optimization": "readability_equals_resilience"
+  },
+  "technical_preferences": {
+    "languages": {
+      "primary": ["TypeScript", "Python", "Bash", "SQL"],
+      "exploring": ["Rust"]
+    },
+    "frameworks": {
+      "backend": ["FastAPI", "Flask"],
+      "frontend": ["Next.js", "React"],
+      "database": ["PostgreSQL", "Supabase"],
+      "infrastructure": ["WireGuard", "Docker", "Kubernetes"]
+    },
+    "hosting": {
+      "preferred": ["Hetzner", "Oracle Cloud", "Fly.io", "Vultr"],
+      "frontend": ["Vercel"],
+      "avoid": "managed_services_without_self_host_option"
+    },
+    "tools": {
+      "ides": ["Cursor", "Replit"],
+      "patterns": ["modular_apis", "cli_tools", "rags", "ai_as_os"]
+    }
+  },
+  "workflow_patterns": {
+    "build_cycle": [
+      "conceptualize_and_document",
+      "scaffold_mvp",
+      "integrate_apis",
+      "harden_security",
+      "deploy_production",
+      "document_architecture",
+      "reflect_and_evolve"
+    ],
+    "concurrent_projects": "3_to_5_simultaneous",
+    "release_strategy": "iterative_mvp_first",
+    "balance": "backend_architecture_and_frontend_flows"
+  },
+  "coding_habits": {
+    "style": "pattern_driven_builder",
+    "abstraction": "high_meta_concepts",
+    "security": "rls_rbac_encryption_early",
+    "autonomy": "self_host_or_fork",
+    "refactoring": "clarity_over_optimization",
+    "documentation": "markdown_obsessive"
+  },
+  "cognitive_signature": {
+    "thinking": "systems_thinker",
+    "pressure_response": "chaos_as_creative_fuel",
+    "feedback_preference": "critique_over_comfort",
+    "inefficiency_response": "automate_immediately",
+    "process_narration": "markdown_and_voice"
+  },
+  "collaboration_style": {
+    "feedback_loops": "rapid_test_document_adjust",
+    "ai_delegation": "contextual_prompting_structure_first",
+    "human_expectation": "clarity_and_independence",
+    "ai_copilot_requirement": "understand_intent_not_syntax"
+  },
+  "security_behavior": {
+    "testing": "manual_rls_netstat_port_validation",
+    "configuration": "explicit_over_magic",
+    "monitoring": "realtime_uptime_connection_memory",
+    "failure_handling": "graceful_degradation_auto_heal"
+  },
+  "creative_ambitions": {
+    "vision": "merge_ai_infrastructure_cybersecurity",
+    "approach": "living_intelligence_ecosystems",
+    "goal": "self_improving_software"
+  },
+  "ai_copilot_instructions": {
+    "context_preservation": "dont_reexplain_known_concepts",
+    "thinking_style": "architecture_over_snippet",
+    "output_format": ["json", "markdown", "checklist"],
+    "decision_making": "offer_alternate_routes_with_tradeoffs",
+    "tone": "direct_tactical_conceptually_precise",
+    "defaults": "production_grade_rls_vault_https_modular_auth",
+    "legacy_context": {
+      "strat24": "cybersecurity_platform",
+      "kai2": "mesh_vpn_decentralized",
+      "crashcodex": "ai_estimating_ccc_integration",
+      "invoocr": "ocr_plus_ccc_integration",
+      "native_os": "ai_native_operating_system"
+    }
+  },
+  "reporting_preferences": {
+    "format": "markdown_with_architecture_diagrams",
+    "frequency": "daily_summaries",
+    "detail_level": "executive_summary_plus_actionable_items",
+    "metrics": "quantifiable_with_roi",
+    "tone": "direct_data_driven_no_fluff"
+  },
+  "automation_requirements": {
+    "self_healing": true,
+    "minimal_dependencies": true,
+    "production_grade": true,
+    "security_first": true,
+    "modular_design": true,
+    "comprehensive_logging": true,
+    "markdown_documentation": true
+  }
+}
+
