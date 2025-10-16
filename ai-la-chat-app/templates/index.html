@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-LA Chat - Test Autonomous AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            padding: 1rem 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .header p {
+            font-size: 0.875rem;
+            color: #888;
+            margin-top: 0.25rem;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .message.user .message-header {
+            color: #4a9eff;
+        }
+
+        .message.assistant .message-header {
+            color: #00d084;
+        }
+
+        .message-content {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            line-height: 1.6;
+        }
+
+        .message.user .message-content {
+            border-left: 3px solid #4a9eff;
+        }
+
+        .message.assistant .message-content {
+            border-left: 3px solid #00d084;
+        }
+
+        .phase {
+            background: #2a2a2a;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #ff9500;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .log-line {
+            padding: 0.5rem 0;
+            color: #aaa;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        .decisions, .predictions {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #333;
+            margin: 1rem 0;
+        }
+
+        .decisions h3, .predictions h3 {
+            color: #fff;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .decision-item, .prediction-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .decision-item:last-child, .prediction-item:last-child {
+            border-bottom: none;
+        }
+
+        .decision-label {
+            color: #888;
+            font-size: 0.875rem;
+        }
+
+        .decision-value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .complete {
+            background: #1a3a1a;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #00d084;
+            margin: 1rem 0;
+        }
+
+        .complete h3 {
+            color: #00d084;
+            margin-bottom: 0.5rem;
+        }
+
+        .error {
+            background: #3a1a1a;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ff4444;
+            margin: 1rem 0;
+            color: #ff4444;
+        }
+
+        .input-container {
+            background: #1a1a1a;
+            border-top: 1px solid #333;
+            padding: 1.5rem 2rem;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #messageInput {
+            flex: 1;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        #messageInput:focus {
+            outline: none;
+            border-color: #4a9eff;
+        }
+
+        #sendButton {
+            background: #4a9eff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #sendButton:hover {
+            background: #3a8eef;
+        }
+
+        #sendButton:disabled {
+            background: #333;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid #333;
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #1a1a1a;
+            border-left: 1px solid #333;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .command {
+            background: #0a0a0a;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: 1px solid #333;
+        }
+
+        .command:hover {
+            background: #2a2a2a;
+            border-color: #4a9eff;
+        }
+
+        .command-name {
+            font-weight: 600;
+            color: #4a9eff;
+            margin-bottom: 0.25rem;
+        }
+
+        .command-desc {
+            font-size: 0.875rem;
+            color: #888;
+        }
+
+        code {
+            background: #0a0a0a;
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        pre {
+            background: #0a0a0a;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AI-LA Chat Interface</h1>
+        <p>Test the autonomous AI development system</p>
+    </div>
+
+    <div class="main">
+        <div class="chat-container">
+            <div class="messages" id="messages">
+                <div class="message assistant">
+                    <div class="message-header">AI-LA</div>
+                    <div class="message-content">
+                        <p>Welcome to AI-LA v3.0 ULTIMATE - The first truly autonomous AI development system.</p>
+                        <p style="margin-top: 1rem;">Try these commands:</p>
+                        <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                            <li><code>build REST API with authentication</code></li>
+                            <li><code>capabilities</code></li>
+                            <li><code>stats</code></li>
+                            <li><code>help</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Type a command or description..."
+                        autocomplete="off"
+                    />
+                    <button id="sendButton">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h2>Quick Commands</h2>
+                <div class="command" data-command="capabilities">
+                    <div class="command-name">capabilities</div>
+                    <div class="command-desc">Show AI-LA capabilities</div>
+                </div>
+                <div class="command" data-command="stats">
+                    <div class="command-name">stats</div>
+                    <div class="command-desc">Show system statistics</div>
+                </div>
+                <div class="command" data-command="help">
+                    <div class="command-name">help</div>
+                    <div class="command-desc">Show help information</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Examples</h2>
+                <div class="command" data-command="build REST API with authentication">
+                    <div class="command-name">Build API</div>
+                    <div class="command-desc">REST API with auth</div>
+                </div>
+                <div class="command" data-command="build SaaS platform for teams">
+                    <div class="command-name">Build SaaS</div>
+                    <div class="command-desc">Team collaboration platform</div>
+                </div>
+                <div class="command" data-command="build E-commerce backend">
+                    <div class="command-name">Build E-commerce</div>
+                    <div class="command-desc">Backend with payments</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        let isProcessing = false;
+
+        // Handle send button click
+        sendButton.addEventListener('click', sendMessage);
+        
+        // Handle enter key
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !isProcessing) {
+                sendMessage();
+            }
+        });
+
+        // Handle sidebar commands
+        document.querySelectorAll('.command').forEach(cmd => {
+            cmd.addEventListener('click', () => {
+                const command = cmd.dataset.command;
+                messageInput.value = command;
+                sendMessage();
+            });
+        });
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message || isProcessing) return;
+
+            // Add user message
+            addMessage('user', message);
+            messageInput.value = '';
+            isProcessing = true;
+            sendButton.disabled = true;
+            sendButton.textContent = 'Processing...';
+
+            try {
+                // Send to API
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+
+                if (data.type === 'build') {
+                    // Start build stream
+                    await streamBuild(data.description);
+                } else if (data.type === 'info') {
+                    addAssistantMessage(data.content);
+                } else if (data.error) {
+                    addError(data.error);
+                }
+            } catch (error) {
+                addError('Failed to communicate with server: ' + error.message);
+            } finally {
+                isProcessing = false;
+                sendButton.disabled = false;
+                sendButton.textContent = 'Send';
+            }
+        }
+
+        async function streamBuild(description) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message assistant';
+            messageDiv.innerHTML = `
+                <div class="message-header">AI-LA</div>
+                <div class="message-content" id="build-output"></div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+
+            const outputDiv = document.getElementById('build-output');
+
+            const eventSource = new EventSource('/api/build?' + new URLSearchParams({
+                description: description
+            }));
+
+            eventSource.addEventListener('message', (e) => {
+                const data = JSON.parse(e.data);
+
+                if (data.type === 'phase') {
+                    const phaseDiv = document.createElement('div');
+                    phaseDiv.className = 'phase';
+                    phaseDiv.textContent = `Phase ${data.phase}: ${data.name}`;
+                    outputDiv.appendChild(phaseDiv);
+                } else if (data.type === 'log') {
+                    const logDiv = document.createElement('div');
+                    logDiv.className = 'log-line';
+                    logDiv.textContent = data.message;
+                    outputDiv.appendChild(logDiv);
+                } else if (data.type === 'decisions') {
+                    const decisionsDiv = document.createElement('div');
+                    decisionsDiv.className = 'decisions';
+                    decisionsDiv.innerHTML = `
+                        <h3>Autonomous Decisions</h3>
+                        <div class="decision-item">
+                            <span class="decision-label">Framework:</span>
+                            <span class="decision-value">${data.data.tech_stack.framework || 'N/A'}</span>
+                        </div>
+                        <div class="decision-item">
+                            <span class="decision-label">Database:</span>
+                            <span class="decision-value">${data.data.tech_stack.database || 'N/A'}</span>
+                        </div>
+                        <div class="decision-item">
+                            <span class="decision-label">Auth:</span>
+                            <span class="decision-value">${data.data.tech_stack.auth || 'N/A'}</span>
+                        </div>
+                        <div class="decision-item">
+                            <span class="decision-label">Deployment:</span>
+                            <span class="decision-value">${data.data.tech_stack.deployment || 'N/A'}</span>
+                        </div>
+                        <div class="decision-item">
+                            <span class="decision-label">Confidence:</span>
+                            <span class="decision-value">${(data.data.confidence * 100).toFixed(1)}%</span>
+                        </div>
+                    `;
+                    outputDiv.appendChild(decisionsDiv);
+                } else if (data.type === 'predictions') {
+                    const predictionsDiv = document.createElement('div');
+                    predictionsDiv.className = 'predictions';
+                    predictionsDiv.innerHTML = `
+                        <h3>Predictions</h3>
+                        <div class="prediction-item">
+                            <span class="decision-label">Next Features:</span>
+                            <span class="decision-value">${data.data.next_features}</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="decision-label">Potential Bugs:</span>
+                            <span class="decision-value">${data.data.potential_bugs}</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="decision-label">Performance Issues:</span>
+                            <span class="decision-value">${data.data.performance_issues}</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="decision-label">Security Risks:</span>
+                            <span class="decision-value">${data.data.security_vulnerabilities}</span>
+                        </div>
+                    `;
+                    outputDiv.appendChild(predictionsDiv);
+                } else if (data.type === 'complete') {
+                    const completeDiv = document.createElement('div');
+                    completeDiv.className = 'complete';
+                    completeDiv.innerHTML = `
+                        <h3>Build Complete</h3>
+                        <p>Project: ${data.result.project}</p>
+                        <p>Path: ${data.result.path}</p>
+                    `;
+                    outputDiv.appendChild(completeDiv);
+                    eventSource.close();
+                } else if (data.type === 'error') {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error';
+                    errorDiv.textContent = 'Error: ' + data.message;
+                    outputDiv.appendChild(errorDiv);
+                    eventSource.close();
+                }
+
+                scrollToBottom();
+            });
+
+            eventSource.onerror = () => {
+                eventSource.close();
+            };
+        }
+
+        function addMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            messageDiv.innerHTML = `
+                <div class="message-header">${role === 'user' ? 'You' : 'AI-LA'}</div>
+                <div class="message-content">${escapeHtml(content)}</div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addAssistantMessage(content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message assistant';
+            messageDiv.innerHTML = `
+                <div class="message-header">AI-LA</div>
+                <div class="message-content"><pre>${escapeHtml(content)}</pre></div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addError(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message assistant';
+            messageDiv.innerHTML = `
+                <div class="message-header">AI-LA</div>
+                <div class="message-content">
+                    <div class="error">${escapeHtml(message)}</div>
+                </div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
+
