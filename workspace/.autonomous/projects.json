@@ -1,0 +1,25 @@
+{
+  "fullstack_task_management": {
+    "path": "/home/ubuntu/ai-la/workspace/fullstack_task_management",
+    "spec": {
+      "name": "fullstack_task_management",
+      "type": "fullstack",
+      "stack": {
+        "framework": "fastapi",
+        "database": "postgresql",
+        "orm": "sqlalchemy",
+        "testing": "pytest",
+        "deployment": "docker"
+      },
+      "features": [
+        "admin"
+      ],
+      "description": "Build fullstack task management SaaS",
+      "options": {
+        "framework": "fastapi"
+      }
+    },
+    "created": "2025-10-16T16:54:25.141180",
+    "deployment": null
+  }
+}
