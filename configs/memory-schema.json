@@ -1,0 +1,396 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Developer Memory Schema",
+  "description": "Schema for storing developer patterns, preferences, and behaviors",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "default": "1.0.0"
+    },
+    "developer_profile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique developer identifier (optional, for privacy)"
+        },
+        "experience_level": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "expert"]
+        },
+        "primary_role": {
+          "type": "string",
+          "enum": ["frontend", "backend", "fullstack", "mobile", "devops", "data", "ml"]
+        }
+      }
+    },
+    "coding_patterns": {
+      "type": "array",
+      "description": "Learned coding patterns and habits",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern_id": {
+            "type": "string",
+            "description": "Unique pattern identifier"
+          },
+          "pattern_type": {
+            "type": "string",
+            "enum": [
+              "naming_convention",
+              "code_structure",
+              "error_handling",
+              "testing_approach",
+              "documentation_style",
+              "api_design",
+              "state_management",
+              "component_architecture",
+              "database_pattern",
+              "security_practice"
+            ]
+          },
+          "pattern": {
+            "type": "string",
+            "description": "The actual pattern or rule"
+          },
+          "context": {
+            "type": "string",
+            "description": "When/where this pattern is used"
+          },
+          "language": {
+            "type": "string",
+            "description": "Programming language (if applicable)"
+          },
+          "framework": {
+            "type": "string",
+            "description": "Framework (if applicable)"
+          },
+          "frequency": {
+            "type": "integer",
+            "description": "How often this pattern is used",
+            "minimum": 1
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "Confidence level in this pattern"
+          },
+          "last_used": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last time this pattern was used"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Code examples of this pattern"
+          }
+        },
+        "required": ["pattern_type", "pattern"]
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "description": "Developer preferences and choices",
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "proficiency": {
+                "type": "string",
+                "enum": ["learning", "comfortable", "proficient", "expert"]
+              },
+              "preference_level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+              }
+            }
+          }
+        },
+        "frameworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "enum": ["frontend", "backend", "fullstack", "mobile", "testing", "build"]
+              },
+              "preference_level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+              }
+            }
+          }
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "enum": ["editor", "version_control", "ci_cd", "deployment", "monitoring", "database"]
+              },
+              "usage_frequency": {
+                "type": "string",
+                "enum": ["rarely", "sometimes", "often", "always"]
+              }
+            }
+          }
+        },
+        "code_style": {
+          "type": "object",
+          "properties": {
+            "indentation": {
+              "type": "string",
+              "enum": ["tabs", "2_spaces", "4_spaces"]
+            },
+            "quotes": {
+              "type": "string",
+              "enum": ["single", "double", "backticks"]
+            },
+            "semicolons": {
+              "type": "boolean",
+              "description": "Use semicolons in JavaScript/TypeScript"
+            },
+            "trailing_commas": {
+              "type": "boolean"
+            },
+            "line_length": {
+              "type": "integer",
+              "minimum": 80,
+              "maximum": 200
+            },
+            "naming_conventions": {
+              "type": "object",
+              "properties": {
+                "variables": {
+                  "type": "string",
+                  "enum": ["camelCase", "snake_case", "PascalCase"]
+                },
+                "functions": {
+                  "type": "string",
+                  "enum": ["camelCase", "snake_case", "PascalCase"]
+                },
+                "classes": {
+                  "type": "string",
+                  "enum": ["PascalCase", "snake_case"]
+                },
+                "constants": {
+                  "type": "string",
+                  "enum": ["UPPER_CASE", "camelCase", "PascalCase"]
+                }
+              }
+            }
+          }
+        },
+        "architecture_preferences": {
+          "type": "object",
+          "properties": {
+            "folder_structure": {
+              "type": "string",
+              "enum": ["feature_based", "layer_based", "domain_driven", "atomic"]
+            },
+            "state_management": {
+              "type": "string",
+              "description": "Preferred state management approach"
+            },
+            "api_style": {
+              "type": "string",
+              "enum": ["REST", "GraphQL", "gRPC", "tRPC"]
+            },
+            "database_preference": {
+              "type": "string",
+              "enum": ["SQL", "NoSQL", "hybrid"]
+            }
+          }
+        }
+      }
+    },
+    "behaviors": {
+      "type": "object",
+      "description": "Developer behaviors and work patterns",
+      "properties": {
+        "testing_approach": {
+          "type": "string",
+          "enum": ["tdd", "test_after", "minimal", "comprehensive"]
+        },
+        "documentation_style": {
+          "type": "string",
+          "enum": ["minimal", "inline_comments", "detailed_docs", "comprehensive"]
+        },
+        "commit_patterns": {
+          "type": "object",
+          "properties": {
+            "message_style": {
+              "type": "string",
+              "enum": ["conventional", "descriptive", "short", "detailed"]
+            },
+            "commit_frequency": {
+              "type": "string",
+              "enum": ["feature_complete", "frequent_small", "end_of_day"]
+            }
+          }
+        },
+        "code_review_style": {
+          "type": "object",
+          "properties": {
+            "focus_areas": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["performance", "security", "readability", "testing", "architecture"]
+              }
+            },
+            "comment_style": {
+              "type": "string",
+              "enum": ["direct", "suggestive", "educational"]
+            }
+          }
+        },
+        "refactoring_triggers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "code_duplication",
+              "long_functions",
+              "complex_conditionals",
+              "poor_naming",
+              "tight_coupling"
+            ]
+          }
+        },
+        "productivity_patterns": {
+          "type": "object",
+          "properties": {
+            "peak_coding_hours": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 23
+              }
+            },
+            "break_frequency": {
+              "type": "string",
+              "enum": ["pomodoro", "task_based", "hourly", "as_needed"]
+            },
+            "learning_style": {
+              "type": "string",
+              "enum": ["documentation", "examples", "video", "hands_on"]
+            }
+          }
+        }
+      }
+    },
+    "project_history": {
+      "type": "array",
+      "description": "Past projects and learned lessons",
+      "items": {
+        "type": "object",
+        "properties": {
+          "project_type": {
+            "type": "string"
+          },
+          "tech_stack": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lessons_learned": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "successful_patterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "avoided_patterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ai_interaction_preferences": {
+      "type": "object",
+      "description": "How the developer prefers to interact with AI",
+      "properties": {
+        "explanation_depth": {
+          "type": "string",
+          "enum": ["brief", "moderate", "detailed", "comprehensive"]
+        },
+        "code_generation_style": {
+          "type": "string",
+          "enum": ["complete_solution", "guided_steps", "hints_only"]
+        },
+        "preferred_response_format": {
+          "type": "string",
+          "enum": ["code_first", "explanation_first", "balanced"]
+        },
+        "error_handling_preference": {
+          "type": "string",
+          "enum": ["show_solution", "guide_debugging", "explain_concepts"]
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "total_interactions": {
+          "type": "integer"
+        },
+        "data_sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "manual_input",
+              "codebase_analysis",
+              "git_history",
+              "openai_import",
+              "cursor_import",
+              "copilot_import",
+              "ai_learning"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+

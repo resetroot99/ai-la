@@ -1,0 +1,47 @@
+# Logs
+*.log
+logs/
+*.log.*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Backup files
+*.bak
+*.backup
+backups/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# User-specific data
+.ai-coding-stack/
+.continue/
+
+# Sensitive data
+*.key
+*.pem
+*.env
+.env.local
+secrets/
+
+# Model files (too large for git)
+*.gguf
+*.bin
+models/
+
+# Test artifacts
+test-results/
+coverage/
+

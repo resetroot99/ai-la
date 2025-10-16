@@ -1,0 +1,298 @@
+{
+  "version": "1.0.0",
+  "developer_profile": {
+    "id": "dev_12345",
+    "experience_level": "advanced",
+    "primary_role": "fullstack"
+  },
+  "coding_patterns": [
+    {
+      "pattern_id": "cp_001",
+      "pattern_type": "naming_convention",
+      "pattern": "Use descriptive, action-oriented function names (e.g., fetchUserData, validateEmail)",
+      "context": "All JavaScript/TypeScript functions",
+      "language": "JavaScript/TypeScript",
+      "frequency": 95,
+      "confidence": "high",
+      "last_used": "2025-10-15T14:30:00Z",
+      "examples": [
+        "async function fetchUserData(userId: string) { ... }",
+        "function validateEmail(email: string): boolean { ... }"
+      ]
+    },
+    {
+      "pattern_id": "cp_002",
+      "pattern_type": "error_handling",
+      "pattern": "Always use try-catch with specific error types and user-friendly messages",
+      "context": "Async operations and API calls",
+      "language": "TypeScript",
+      "frequency": 88,
+      "confidence": "high",
+      "last_used": "2025-10-15T16:45:00Z",
+      "examples": [
+        "try { const data = await api.fetch(); } catch (error) { if (error instanceof ApiError) { showUserError(error.message); } }"
+      ]
+    },
+    {
+      "pattern_id": "cp_003",
+      "pattern_type": "component_architecture",
+      "pattern": "Separate presentational and container components",
+      "context": "React applications",
+      "framework": "React",
+      "frequency": 72,
+      "confidence": "high",
+      "last_used": "2025-10-14T10:20:00Z",
+      "examples": [
+        "// Container: UserProfileContainer.tsx\n// Presentational: UserProfile.tsx"
+      ]
+    },
+    {
+      "pattern_id": "cp_004",
+      "pattern_type": "testing_approach",
+      "pattern": "Write integration tests for critical user flows, unit tests for utilities",
+      "context": "All projects",
+      "frequency": 65,
+      "confidence": "medium",
+      "last_used": "2025-10-13T09:15:00Z",
+      "examples": [
+        "describe('User Authentication Flow', () => { it('should login successfully', async () => { ... }); });"
+      ]
+    },
+    {
+      "pattern_id": "cp_005",
+      "pattern_type": "api_design",
+      "pattern": "Use RESTful conventions with clear resource naming",
+      "context": "Backend API design",
+      "language": "TypeScript/Python",
+      "frequency": 80,
+      "confidence": "high",
+      "last_used": "2025-10-15T11:00:00Z",
+      "examples": [
+        "GET /api/users/:id",
+        "POST /api/users",
+        "PUT /api/users/:id",
+        "DELETE /api/users/:id"
+      ]
+    },
+    {
+      "pattern_id": "cp_006",
+      "pattern_type": "state_management",
+      "pattern": "Use Zustand for global state, React Context for theme/auth only",
+      "context": "React applications",
+      "framework": "React",
+      "frequency": 55,
+      "confidence": "medium",
+      "last_used": "2025-10-12T15:30:00Z",
+      "examples": [
+        "const useStore = create((set) => ({ user: null, setUser: (user) => set({ user }) }));"
+      ]
+    },
+    {
+      "pattern_id": "cp_007",
+      "pattern_type": "database_pattern",
+      "pattern": "Use Prisma ORM with TypeScript for type-safe database operations",
+      "context": "Database interactions",
+      "language": "TypeScript",
+      "frequency": 70,
+      "confidence": "high",
+      "last_used": "2025-10-15T13:20:00Z",
+      "examples": [
+        "const user = await prisma.user.findUnique({ where: { id: userId } });"
+      ]
+    },
+    {
+      "pattern_id": "cp_008",
+      "pattern_type": "security_practice",
+      "pattern": "Always validate and sanitize user input, use parameterized queries",
+      "context": "All user-facing inputs",
+      "frequency": 90,
+      "confidence": "high",
+      "last_used": "2025-10-15T16:00:00Z",
+      "examples": [
+        "const sanitizedInput = validator.escape(userInput);",
+        "await db.query('SELECT * FROM users WHERE id = $1', [userId]);"
+      ]
+    }
+  ],
+  "preferences": {
+    "languages": [
+      {
+        "name": "TypeScript",
+        "proficiency": "expert",
+        "preference_level": 10
+      },
+      {
+        "name": "Python",
+        "proficiency": "proficient",
+        "preference_level": 8
+      },
+      {
+        "name": "JavaScript",
+        "proficiency": "expert",
+        "preference_level": 9
+      },
+      {
+        "name": "Go",
+        "proficiency": "comfortable",
+        "preference_level": 6
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "Next.js",
+        "category": "fullstack",
+        "preference_level": 10
+      },
+      {
+        "name": "React",
+        "category": "frontend",
+        "preference_level": 9
+      },
+      {
+        "name": "FastAPI",
+        "category": "backend",
+        "preference_level": 8
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "frontend",
+        "preference_level": 9
+      },
+      {
+        "name": "Prisma",
+        "category": "backend",
+        "preference_level": 8
+      }
+    ],
+    "tools": [
+      {
+        "name": "VSCode",
+        "category": "editor",
+        "usage_frequency": "always"
+      },
+      {
+        "name": "Git",
+        "category": "version_control",
+        "usage_frequency": "always"
+      },
+      {
+        "name": "Docker",
+        "category": "deployment",
+        "usage_frequency": "often"
+      },
+      {
+        "name": "Vercel",
+        "category": "deployment",
+        "usage_frequency": "often"
+      },
+      {
+        "name": "PostgreSQL",
+        "category": "database",
+        "usage_frequency": "always"
+      }
+    ],
+    "code_style": {
+      "indentation": "2_spaces",
+      "quotes": "single",
+      "semicolons": false,
+      "trailing_commas": true,
+      "line_length": 100,
+      "naming_conventions": {
+        "variables": "camelCase",
+        "functions": "camelCase",
+        "classes": "PascalCase",
+        "constants": "UPPER_CASE"
+      }
+    },
+    "architecture_preferences": {
+      "folder_structure": "feature_based",
+      "state_management": "Zustand with React Context for global concerns",
+      "api_style": "REST",
+      "database_preference": "SQL"
+    }
+  },
+  "behaviors": {
+    "testing_approach": "test_after",
+    "documentation_style": "inline_comments",
+    "commit_patterns": {
+      "message_style": "conventional",
+      "commit_frequency": "feature_complete"
+    },
+    "code_review_style": {
+      "focus_areas": [
+        "readability",
+        "security",
+        "performance"
+      ],
+      "comment_style": "suggestive"
+    },
+    "refactoring_triggers": [
+      "code_duplication",
+      "long_functions",
+      "poor_naming"
+    ],
+    "productivity_patterns": {
+      "peak_coding_hours": [9, 10, 11, 14, 15, 16],
+      "break_frequency": "task_based",
+      "learning_style": "hands_on"
+    }
+  },
+  "project_history": [
+    {
+      "project_type": "SaaS Platform",
+      "tech_stack": ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
+      "lessons_learned": [
+        "Feature-based folder structure scales better than layer-based",
+        "Zustand is simpler than Redux for most use cases",
+        "Server components in Next.js reduce client-side JavaScript significantly"
+      ],
+      "successful_patterns": [
+        "Using tRPC for type-safe API calls",
+        "Implementing optimistic UI updates",
+        "Server-side validation with Zod"
+      ],
+      "avoided_patterns": [
+        "Over-engineering state management",
+        "Premature optimization",
+        "Tight coupling between components"
+      ]
+    },
+    {
+      "project_type": "REST API",
+      "tech_stack": ["FastAPI", "Python", "PostgreSQL", "Redis"],
+      "lessons_learned": [
+        "FastAPI's automatic OpenAPI docs save documentation time",
+        "Pydantic models provide excellent validation",
+        "Redis caching dramatically improves read performance"
+      ],
+      "successful_patterns": [
+        "Dependency injection for database sessions",
+        "Background tasks with Celery",
+        "JWT authentication with refresh tokens"
+      ],
+      "avoided_patterns": [
+        "Synchronous database calls in async endpoints",
+        "Missing input validation",
+        "Hardcoded configuration values"
+      ]
+    }
+  ],
+  "ai_interaction_preferences": {
+    "explanation_depth": "moderate",
+    "code_generation_style": "complete_solution",
+    "preferred_response_format": "code_first",
+    "error_handling_preference": "guide_debugging"
+  },
+  "metadata": {
+    "created_at": "2025-01-15T08:00:00Z",
+    "last_updated": "2025-10-15T17:00:00Z",
+    "total_interactions": 1247,
+    "data_sources": [
+      "codebase_analysis",
+      "git_history",
+      "manual_input",
+      "ai_learning"
+    ]
+  }
+}
+
