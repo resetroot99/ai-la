@@ -27,35 +27,35 @@ class WorkingAutonomousAgent:
         Returns the actual working code
         """
         print(f"\n{'='*60}")
-        print(f"🤖 Building: {description}")
+        print(f" Building: {description}")
         print(f"{'='*60}\n")
         
         # Step 1: Parse what to build
         spec = self._parse_description(description)
-        print(f"✓ Parsed: {spec['type']} app")
+        print(f" Parsed: {spec['type']} app")
         
         # Step 2: Generate actual code
         code_files = self._generate_code(spec)
-        print(f"✓ Generated {len(code_files)} files")
+        print(f" Generated {len(code_files)} files")
         
         # Step 3: Write files
         project_path = self._write_files(spec['name'], code_files)
-        print(f"✓ Created project: {project_path}")
+        print(f" Created project: {project_path}")
         
         # Step 4: Initialize git
         self._init_git(project_path)
-        print(f"✓ Initialized git")
+        print(f" Initialized git")
         
         # Step 5: Create README
         self._create_readme(project_path, spec)
-        print(f"✓ Created documentation")
+        print(f" Created documentation")
         
         # Step 6: Test it works
         works = self._test_app(project_path, spec)
-        print(f"✓ Tested: {'PASS' if works else 'FAIL'}")
+        print(f" Tested: {'PASS' if works else 'FAIL'}")
         
         print(f"\n{'='*60}")
-        print(f"✅ COMPLETE: {project_path}")
+        print(f" COMPLETE: {project_path}")
         print(f"{'='*60}\n")
         
         return {
@@ -612,14 +612,14 @@ def main():
     result = agent.build_app(description)
     
     if result['success']:
-        print(f"\n✅ Success! Your app is ready at:")
+        print(f"\n Success! Your app is ready at:")
         print(f"   {result['path']}")
         print(f"\nNext steps:")
         print(f"   cd {result['path']}")
         print(f"   pip install -r requirements.txt")
         print(f"   python app.py")
     else:
-        print(f"\n❌ Build failed")
+        print(f"\n Build failed")
         sys.exit(1)
 
 

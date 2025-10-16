@@ -673,11 +673,11 @@ ollama serve
 
 With open-source tools and models, you can build an AI coding stack that:
 
-✅ **Costs $0-5/month** (vs $10-40 for paid services)  
-✅ **Has no usage limits** (unlimited with local models)  
-✅ **Protects your privacy** (code never leaves your machine)  
-✅ **Matches or exceeds** paid alternatives in quality  
-✅ **Gives you complete control** over models and data  
+ **Costs $0-5/month** (vs $10-40 for paid services)  
+ **Has no usage limits** (unlimited with local models)  
+ **Protects your privacy** (code never leaves your machine)  
+ **Matches or exceeds** paid alternatives in quality  
+ **Gives you complete control** over models and data  
 
 **The future of AI coding is open-source.**
 

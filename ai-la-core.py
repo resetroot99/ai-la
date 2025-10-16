@@ -87,7 +87,7 @@ class ConstraintBreaker:
         Build persistent knowledge graph of entire codebase
         No context window limits - everything is indexed
         """
-        print("🧠 Building persistent context (no limits)...")
+        print(" Building persistent context (no limits)...")
         
         knowledge_graph = {
             "entities": {},
@@ -115,7 +115,7 @@ class ConstraintBreaker:
         # Store in database (infinite context)
         self._store_knowledge(knowledge_graph)
         
-        print(f"✓ Indexed {len(knowledge_graph['entities'])} entities")
+        print(f" Indexed {len(knowledge_graph['entities'])} entities")
         return knowledge_graph
     
     def _analyze_file(self, file_path: Path) -> Dict:
@@ -172,7 +172,7 @@ class ConstraintBreaker:
         Learn actual business logic from examples
         Not just code patterns - actual business rules
         """
-        print("📚 Learning business logic...")
+        print(" Learning business logic...")
         
         c = self.db.cursor()
         
@@ -193,7 +193,7 @@ class ConstraintBreaker:
             ))
         
         self.db.commit()
-        print(f"✓ Learned {len(examples)} business rules")
+        print(f" Learned {len(examples)} business rules")
         
         return {"rules_learned": len(examples)}
     
@@ -230,7 +230,7 @@ Return JSON:
         Ask clarifying questions instead of guessing
         Build complete spec from vague input
         """
-        print(f"❓ Resolving ambiguity in: {vague_requirement}")
+        print(f" Resolving ambiguity in: {vague_requirement}")
         
         # Identify what's unclear
         unclear_aspects = self._identify_unclear_aspects(vague_requirement)
@@ -251,7 +251,7 @@ Return JSON:
             questions
         )
         
-        print(f"✓ Resolved {len(unclear_aspects)} ambiguities")
+        print(f" Resolved {len(unclear_aspects)} ambiguities")
         return resolved_spec
     
     def _identify_unclear_aspects(self, requirement: str) -> List[Dict]:
@@ -318,7 +318,7 @@ Return complete specification as JSON.
         Automatically diagnose and fix errors
         Learn from each fix
         """
-        print(f"🔧 Auto-recovering from error...")
+        print(f" Auto-recovering from error...")
         
         # Check if we've seen this error before
         c = self.db.cursor()
@@ -333,7 +333,7 @@ Return complete specification as JSON.
         known_solution = c.fetchone()
         
         if known_solution:
-            print(f"✓ Found known solution (worked {known_solution[1]} times)")
+            print(f" Found known solution (worked {known_solution[1]} times)")
             solution = json.loads(known_solution[0])
             self._apply_solution(solution)
             
@@ -368,7 +368,7 @@ Return complete specification as JSON.
                 datetime.now().isoformat()
             ))
             self.db.commit()
-            print(f"✓ Fixed and learned new solution")
+            print(f" Fixed and learned new solution")
         
         return {"fixed": success, "solution": solution}
     
@@ -439,7 +439,7 @@ Return JSON with:
         Break down project into multi-week plan
         Track progress and adapt
         """
-        print(f"📅 Creating long-term plan for: {project_goal}")
+        print(f" Creating long-term plan for: {project_goal}")
         
         # Generate comprehensive plan
         plan = self._generate_project_plan(project_goal)
@@ -460,7 +460,7 @@ Return JSON with:
             ))
         
         self.db.commit()
-        print(f"✓ Created plan with {len(plan['milestones'])} milestones")
+        print(f" Created plan with {len(plan['milestones'])} milestones")
         
         return plan
     
@@ -500,7 +500,7 @@ Return JSON:
         Generate tests that actually catch bugs
         Based on real failure modes
         """
-        print(f"🧪 Generating real tests for {code_path}...")
+        print(f" Generating real tests for {code_path}...")
         
         # Analyze code for potential bugs
         bug_patterns = self._identify_bug_patterns(code_path)
@@ -511,7 +511,7 @@ Return JSON:
             test = self._generate_test_for_pattern(pattern)
             tests.append(test)
         
-        print(f"✓ Generated {len(tests)} real-world tests")
+        print(f" Generated {len(tests)} real-world tests")
         return tests
     
     def _identify_bug_patterns(self, code_path: Path) -> List[Dict]:
@@ -559,7 +559,7 @@ Return JSON:
         Check if app is actually production-ready
         Not just "it works locally"
         """
-        print(f"🚀 Checking production readiness...")
+        print(f" Checking production readiness...")
         
         checks = {
             "security": self._check_security(app_path),
@@ -576,7 +576,7 @@ Return JSON:
         
         ready = len(issues) == 0
         
-        print(f"{'✓' if ready else '⚠️'} Production ready: {ready}")
+        print(f"{'' if ready else ''} Production ready: {ready}")
         if issues:
             print(f"  Issues found: {len(issues)}")
         

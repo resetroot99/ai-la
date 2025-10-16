@@ -388,12 +388,12 @@ class AutonomousDecisionEngine:
         This is the main decision-making function
         """
         print(f"\n{'='*70}")
-        print(f"🤖 Autonomous Decision Engine")
+        print(f" Autonomous Decision Engine")
         print(f"{'='*70}\n")
         print(f"Input: {description}\n")
         
         # Step 1: Analyze requirements
-        print("📋 Step 1: Analyzing requirements...")
+        print(" Step 1: Analyzing requirements...")
         requirements = self.analyze_requirements(description)
         
         print(f"  Type: {', '.join(requirements['type'])}")
@@ -402,7 +402,7 @@ class AutonomousDecisionEngine:
         print(f"  Features: {len(requirements['features'])} detected")
         
         # Step 2: Decide tech stack
-        print("\n🔧 Step 2: Deciding tech stack...")
+        print("\n Step 2: Deciding tech stack...")
         tech_stack = self.decide_tech_stack(requirements)
         
         print(f"  Framework: {tech_stack['framework']}")
@@ -411,14 +411,14 @@ class AutonomousDecisionEngine:
         print(f"  Deployment: {tech_stack['deployment']}")
         
         # Step 3: Decide architecture
-        print("\n🏗️  Step 3: Deciding architecture...")
+        print("\n  Step 3: Deciding architecture...")
         architecture = self.decide_architecture(requirements, tech_stack)
         
         print(f"  Pattern: {architecture['pattern']}")
         print(f"  Structure: {len(architecture['structure'])} directories")
         
         # Step 4: Decide database schema
-        print("\n💾 Step 4: Designing database schema...")
+        print("\n Step 4: Designing database schema...")
         schema = self.decide_database_schema(requirements)
         
         print(f"  Tables: {len(schema['tables'])}")
@@ -433,7 +433,7 @@ class AutonomousDecisionEngine:
         })
         
         print(f"\n{'='*70}")
-        print(f"✅ ALL DECISIONS MADE AUTONOMOUSLY")
+        print(f" ALL DECISIONS MADE AUTONOMOUSLY")
         print(f"{'='*70}\n")
         
         return {

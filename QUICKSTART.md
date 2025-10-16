@@ -30,11 +30,11 @@ cd ultimate-ai-coding-stack
 ```
 
 The installer will:
-- ✅ Check system requirements
-- ✅ Install Ollama
-- ✅ Download AI models (based on your RAM)
-- ✅ Install VSCode extensions
-- ✅ Configure everything automatically
+-  Check system requirements
+-  Install Ollama
+-  Download AI models (based on your RAM)
+-  Install VSCode extensions
+-  Configure everything automatically
 
 ## First Steps
 
@@ -73,7 +73,7 @@ code .
 
 1. Open VSCode
 2. Click Cline icon in sidebar
-3. Click settings (⚙️)
+3. Click settings ()
 4. Find "Custom Instructions"
 5. Copy contents from: `~/.ai-coding-stack/memory-bank-instructions.md`
 6. Paste and save
@@ -209,5 +209,5 @@ tail -f ~/.ai-coding-stack/install.log
 
 ---
 
-**Happy coding with AI! 🚀**
+**Happy coding with AI! **
 

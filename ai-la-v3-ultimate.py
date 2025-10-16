@@ -42,37 +42,37 @@ class AILAUltimate:
         self.workspace.mkdir(parents=True, exist_ok=True)
         
         print(f"\n{'='*70}")
-        print(f"🚀 AI-LA v{self.VERSION}")
+        print(f" AI-LA v{self.VERSION}")
         print(f"{'='*70}")
         print(f"The First Truly Autonomous AI Development System")
         print(f"{'='*70}\n")
-        print(f"📁 Workspace: {self.workspace}")
+        print(f" Workspace: {self.workspace}")
         
         # Initialize revolutionary components
-        print("\n🧠 Initializing Neural Core (Self-Evolution)...")
+        print("\n Initializing Neural Core (Self-Evolution)...")
         import importlib.util
         spec = importlib.util.spec_from_file_location("neural", Path(__file__).parent / "ai-la-neural-core.py")
         neural_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(neural_module)
         self.neural_core = neural_module.NeuralCore()
-        print("  ✓ Neural Core online")
+        print("   Neural Core online")
         
-        print("🤖 Initializing Decision Engine (Autonomous Decisions)...")
+        print(" Initializing Decision Engine (Autonomous Decisions)...")
         spec = importlib.util.spec_from_file_location("decision", Path(__file__).parent / "ai-la-decision-engine.py")
         decision_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(decision_module)
         self.decision_engine = decision_module.AutonomousDecisionEngine()
-        print("  ✓ Decision Engine online")
+        print("   Decision Engine online")
         
-        print("🔮 Initializing Predictive Engine (Future Anticipation)...")
+        print(" Initializing Predictive Engine (Future Anticipation)...")
         spec = importlib.util.spec_from_file_location("predictive", Path(__file__).parent / "ai-la-predictive.py")
         predictive_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(predictive_module)
         self.predictive_engine = predictive_module.PredictiveEngine()
-        print("  ✓ Predictive Engine online")
+        print("   Predictive Engine online")
         
         # Load v2.0 components
-        print("⚙️  Loading Generation & Deployment Systems...")
+        print("  Loading Generation & Deployment Systems...")
         spec = importlib.util.spec_from_file_location("minimal", Path(__file__).parent / "ai-la-minimal.py")
         minimal_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(minimal_module)
@@ -91,10 +91,10 @@ class AILAUltimate:
         self.generator = WorkingAutonomousAgent()
         self.monitor = AILAMonitor()
         self.projects = AILAProjectManager(str(self.workspace / "projects"))
-        print("  ✓ All systems loaded")
+        print("   All systems loaded")
         
         print(f"\n{'='*70}")
-        print(f"✅ AI-LA ULTIMATE READY")
+        print(f" AI-LA ULTIMATE READY")
         print(f"{'='*70}\n")
     
     def autonomous_build(self, description: str, options: Dict = None) -> Dict:
@@ -114,66 +114,66 @@ class AILAUltimate:
         options = options or {}
         
         print(f"\n{'='*80}")
-        print(f"🤖 AI-LA ULTIMATE - AUTONOMOUS BUILD")
+        print(f" AI-LA ULTIMATE - AUTONOMOUS BUILD")
         print(f"{'='*80}\n")
-        print(f"📝 Input: {description}")
-        print(f"🎯 Mode: FULLY AUTONOMOUS\n")
+        print(f" Input: {description}")
+        print(f" Mode: FULLY AUTONOMOUS\n")
         
         start_time = time.time()
         
         # Phase 1: AUTONOMOUS DECISION MAKING
-        print(f"{'─'*80}")
+        print(f"{''*80}")
         print(f"PHASE 1: AUTONOMOUS DECISION MAKING")
-        print(f"{'─'*80}\n")
+        print(f"{''*80}\n")
         
-        print("🤖 AI is analyzing requirements and making all decisions...")
+        print(" AI is analyzing requirements and making all decisions...")
         print("   (No human input required)\n")
         
         decisions = self.decision_engine.make_all_decisions(description)
         
-        print(f"\n✅ AI has made {len(decisions)} autonomous decisions")
+        print(f"\n AI has made {len(decisions)} autonomous decisions")
         print(f"   Confidence: {decisions['confidence']*100:.1f}%\n")
         
         # Phase 2: PREDICTIVE ANALYSIS
-        print(f"{'─'*80}")
+        print(f"{''*80}")
         print(f"PHASE 2: PREDICTIVE ANALYSIS")
-        print(f"{'─'*80}\n")
+        print(f"{''*80}\n")
         
-        print("🔮 AI is predicting future needs...")
+        print(" AI is predicting future needs...")
         print("   (Anticipating requirements before you ask)\n")
         
         # We'll predict after generation
         predictions_pending = True
         
         # Phase 3: CODE GENERATION
-        print(f"{'─'*80}")
+        print(f"{''*80}")
         print(f"PHASE 3: CODE GENERATION")
-        print(f"{'─'*80}\n")
+        print(f"{''*80}\n")
         
-        print("⚡ AI is generating application...")
+        print(" AI is generating application...")
         
         result = self.generator.build_app(description)
         
         if not result['success']:
-            print(f"\n❌ Generation failed: {result.get('error')}")
+            print(f"\n Generation failed: {result.get('error')}")
             return result
         
         generation_time = time.time() - start_time
         
-        print(f"\n✅ Application generated in {generation_time:.2f}s")
+        print(f"\n Application generated in {generation_time:.2f}s")
         print(f"   Path: {result['path']}")
         print(f"   Files: {len(result.get('files', []))}")
         
         # Phase 4: PREDICTIVE ENHANCEMENTS
-        print(f"\n{'─'*80}")
+        print(f"\n{''*80}")
         print(f"PHASE 4: PREDICTIVE ENHANCEMENTS")
-        print(f"{'─'*80}\n")
+        print(f"{''*80}\n")
         
-        print("🔮 AI is predicting what you'll need next...")
+        print(" AI is predicting what you'll need next...")
         
         predictions = self.predictive_engine.predict_all(str(result['path']))
         
-        print(f"\n✅ AI predicted:")
+        print(f"\n AI predicted:")
         print(f"   • {len(predictions['next_features'])} future features")
         print(f"   • {len(predictions['potential_bugs'])} potential bugs")
         print(f"   • {len(predictions['performance_issues'])} performance issues")
@@ -181,11 +181,11 @@ class AILAUltimate:
         
         # Phase 5: AUTONOMOUS DEPLOYMENT
         if options.get('deploy', True):  # Deploy by default
-            print(f"\n{'─'*80}")
+            print(f"\n{''*80}")
             print(f"PHASE 5: AUTONOMOUS DEPLOYMENT")
-            print(f"{'─'*80}\n")
+            print(f"{''*80}\n")
             
-            print("🚀 AI is deploying application...")
+            print(" AI is deploying application...")
             print(f"   Platform: {decisions['tech_stack']['deployment']}")
             
             spec = importlib.util.spec_from_file_location("deploy", Path(__file__).parent / "ai-la-deploy.py")
@@ -197,37 +197,37 @@ class AILAUltimate:
             deployment = deployer.deploy(decisions['tech_stack']['deployment'])
             
             if deployment['success']:
-                print(f"\n✅ Deployed successfully")
+                print(f"\n Deployed successfully")
                 print(f"   URL: {deployment['url']}")
             else:
-                print(f"\n⚠️  Deployment skipped: {deployment.get('error')}")
+                print(f"\n  Deployment skipped: {deployment.get('error')}")
                 deployment = None
         else:
             deployment = None
         
         # Phase 6: SELF-EVOLUTION
-        print(f"\n{'─'*80}")
+        print(f"\n{''*80}")
         print(f"PHASE 6: SELF-EVOLUTION")
-        print(f"{'─'*80}\n")
+        print(f"{''*80}\n")
         
-        print("🧠 AI is analyzing its own performance...")
+        print(" AI is analyzing its own performance...")
         
         evolution_result = self.neural_core.evolve()
         
         if evolution_result['evolved']:
-            print(f"\n✅ AI evolved to generation {evolution_result['generation']}")
+            print(f"\n AI evolved to generation {evolution_result['generation']}")
             print(f"   Improvement: {evolution_result['improvement']}")
             print(f"   Performance gain: {evolution_result['performance_gain']:.1f}%")
         else:
-            print(f"\n✓ AI is already optimal")
+            print(f"\n AI is already optimal")
             print(f"   Performance score: {evolution_result.get('score', 0)}/100")
         
         # Phase 7: LEARNING & TRACKING
-        print(f"\n{'─'*80}")
+        print(f"\n{''*80}")
         print(f"PHASE 7: LEARNING & TRACKING")
-        print(f"{'─'*80}\n")
+        print(f"{''*80}\n")
         
-        print("📚 AI is recording learning data...")
+        print(" AI is recording learning data...")
         
         # Register project
         project_name = result['spec']['name']
@@ -256,17 +256,17 @@ class AILAUltimate:
             success=True
         )
         
-        print(f"✅ Learning data recorded")
+        print(f" Learning data recorded")
         print(f"   Project ID: {project_id}")
         
         # FINAL SUMMARY
         total_time = time.time() - start_time
         
         print(f"\n{'='*80}")
-        print(f"✅ AUTONOMOUS BUILD COMPLETE")
+        print(f" AUTONOMOUS BUILD COMPLETE")
         print(f"{'='*80}\n")
         
-        print(f"📊 Summary:")
+        print(f" Summary:")
         print(f"   Total Time: {total_time:.2f}s")
         print(f"   Project: {project_name}")
         print(f"   Framework: {decisions['tech_stack']['framework']}")
@@ -277,7 +277,7 @@ class AILAUltimate:
         print(f"   AI Generation: {evolution_result.get('generation', 0)}")
         print(f"   Predictions Made: {len(predictions['next_features']) + len(predictions['potential_bugs'])}")
         
-        print(f"\n🎉 From description to production in {total_time:.2f}s")
+        print(f"\n From description to production in {total_time:.2f}s")
         print(f"   100% autonomous. Zero human intervention.\n")
         
         return {
@@ -296,20 +296,20 @@ class AILAUltimate:
     def show_capabilities(self):
         """Show what makes this system revolutionary"""
         print(f"\n{'='*80}")
-        print(f"🚀 AI-LA ULTIMATE CAPABILITIES")
+        print(f" AI-LA ULTIMATE CAPABILITIES")
         print(f"{'='*80}\n")
         
         capabilities = [
-            ("🧠 Self-Evolving", "AI improves its own code autonomously"),
-            ("🤖 Autonomous Decisions", "Makes ALL technical decisions without human input"),
-            ("🔮 Predictive Development", "Anticipates needs before you ask"),
-            ("⚡ Instant Generation", "From idea to code in seconds"),
-            ("🚀 Zero-Touch Deployment", "Deploys to production automatically"),
-            ("📊 Continuous Learning", "Gets smarter with every build"),
-            ("🔒 Security Prediction", "Identifies vulnerabilities before they exist"),
-            ("📈 Performance Optimization", "Self-optimizes for speed"),
-            ("🌐 Multi-Platform", "Deploys anywhere automatically"),
-            ("💡 Intelligent Architecture", "Designs optimal system architecture")
+            (" Self-Evolving", "AI improves its own code autonomously"),
+            (" Autonomous Decisions", "Makes ALL technical decisions without human input"),
+            (" Predictive Development", "Anticipates needs before you ask"),
+            (" Instant Generation", "From idea to code in seconds"),
+            (" Zero-Touch Deployment", "Deploys to production automatically"),
+            (" Continuous Learning", "Gets smarter with every build"),
+            (" Security Prediction", "Identifies vulnerabilities before they exist"),
+            (" Performance Optimization", "Self-optimizes for speed"),
+            (" Multi-Platform", "Deploys anywhere automatically"),
+            (" Intelligent Architecture", "Designs optimal system architecture")
         ]
         
         for capability, description in capabilities:
@@ -323,12 +323,12 @@ class AILAUltimate:
     def show_stats(self):
         """Show system statistics"""
         print(f"\n{'='*80}")
-        print(f"📊 AI-LA ULTIMATE STATISTICS")
+        print(f" AI-LA ULTIMATE STATISTICS")
         print(f"{'='*80}\n")
         
         # Generation stats
         gen_stats = self.monitor.get_generation_stats(days=30)
-        print(f"📈 Generation Performance:")
+        print(f" Generation Performance:")
         print(f"   Total Builds: {gen_stats['total_generations']}")
         print(f"   Success Rate: {gen_stats['success_rate']}%")
         print(f"   Avg Time: {gen_stats['avg_generation_time']}s")
@@ -337,7 +337,7 @@ class AILAUltimate:
         
         # Evolution stats
         history = self.neural_core.get_evolution_history()
-        print(f"\n🧠 Evolution Progress:")
+        print(f"\n Evolution Progress:")
         print(f"   Current Generation: {self.neural_core.generation}")
         print(f"   Total Evolutions: {len(history)}")
         if history:
@@ -346,7 +346,7 @@ class AILAUltimate:
         
         # Prediction accuracy
         accuracy = self.predictive_engine.get_prediction_accuracy()
-        print(f"\n🔮 Prediction Accuracy:")
+        print(f"\n Prediction Accuracy:")
         print(f"   Total Predictions: {accuracy['total_predictions']}")
         print(f"   Accurate: {accuracy['accurate_predictions']}")
         print(f"   Accuracy Rate: {accuracy['accuracy_rate']}%")
@@ -355,7 +355,7 @@ class AILAUltimate:
         decision_history = self.decision_engine.get_decision_history()
         if decision_history:
             avg_confidence = sum(d['confidence'] for d in decision_history) / len(decision_history)
-            print(f"\n🤖 Decision Confidence:")
+            print(f"\n Decision Confidence:")
             print(f"   Total Decisions: {len(decision_history)}")
             print(f"   Avg Confidence: {avg_confidence*100:.1f}%")
         

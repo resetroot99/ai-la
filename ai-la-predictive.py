@@ -392,12 +392,12 @@ class PredictiveEngine:
         Make all predictions for a project
         """
         print(f"\n{'='*70}")
-        print(f"🔮 Predictive Development Engine")
+        print(f" Predictive Development Engine")
         print(f"{'='*70}\n")
         print(f"Analyzing: {project_path}\n")
         
         # Analyze current state
-        print("📊 Analyzing project state...")
+        print(" Analyzing project state...")
         state = self.analyze_project_state(project_path)
         
         print(f"  Files: {state['file_count']}")
@@ -405,38 +405,38 @@ class PredictiveEngine:
         print(f"  Features: {sum(1 for k, v in state.items() if k.startswith('has_') and v)}")
         
         # Make predictions
-        print("\n🔮 Making predictions...\n")
+        print("\n Making predictions...\n")
         
         # Next features
-        print("📋 Predicted Next Features:")
+        print(" Predicted Next Features:")
         next_features = self.predict_next_features(state)
         for feat in next_features[:3]:
             print(f"  • {feat['feature']} (confidence: {feat['confidence']*100:.0f}%)")
             print(f"    {feat['reasoning']}")
         
         # Potential bugs
-        print("\n🐛 Predicted Potential Bugs:")
+        print("\n Predicted Potential Bugs:")
         bugs = self.predict_potential_bugs(state)
         for bug in bugs[:3]:
             print(f"  • {bug['type']} (severity: {bug['severity']})")
             print(f"    {bug['description']}")
         
         # Performance issues
-        print("\n⚡ Predicted Performance Issues:")
+        print("\n Predicted Performance Issues:")
         perf_issues = self.predict_performance_issues(state)
         for issue in perf_issues[:3]:
             print(f"  • {issue['type']} (impact: {issue['impact']})")
             print(f"    {issue['description']}")
         
         # Security vulnerabilities
-        print("\n🔒 Predicted Security Vulnerabilities:")
+        print("\n Predicted Security Vulnerabilities:")
         vulns = self.predict_security_vulnerabilities(state)
         for vuln in vulns[:3]:
             print(f"  • {vuln['type']} (severity: {vuln['severity']})")
             print(f"    {vuln['description']}")
         
         # Scaling needs
-        print("\n📈 Predicted Scaling Needs:")
+        print("\n Predicted Scaling Needs:")
         scaling = self.predict_scaling_needs(state)
         print(f"  Current Capacity: {scaling['current_capacity']}")
         if scaling['predicted_bottleneck']:
@@ -444,7 +444,7 @@ class PredictiveEngine:
             print(f"  Time to Bottleneck: {scaling['time_to_bottleneck']}")
         
         print(f"\n{'='*70}")
-        print(f"✅ PREDICTIONS COMPLETE")
+        print(f" PREDICTIONS COMPLETE")
         print(f"{'='*70}\n")
         
         return {

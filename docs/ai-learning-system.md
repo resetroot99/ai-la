@@ -12,7 +12,7 @@ The AI Learning System makes your coding assistant smarter over time by learning
 
 ```
 Open Source Code → Pattern Analysis → Knowledge Base → Fine-tuned Model → Better Code
-Your Code ────────┘
+Your Code 
 ```
 
 ## Features
@@ -194,22 +194,22 @@ Runs daily at 2 AM:
 
 ```
 ~/.ai-coding-stack/learning/
-├── knowledge-base/
-│   ├── unified.json          # Aggregated patterns
-│   ├── react-patterns.json   # Per-repo patterns
-│   └── ...
-├── patterns/
-│   ├── my-project-patterns.json
-│   ├── my-project-commits.json
-│   └── ...
-├── training-data/
-│   ├── compliance-data.jsonl
-│   ├── synthetic.jsonl
-│   └── ...
-├── models/
-│   └── custom-coder/
-└── cache/
-    └── cloned-repos/
+ knowledge-base/
+    unified.json          # Aggregated patterns
+    react-patterns.json   # Per-repo patterns
+    ...
+ patterns/
+    my-project-patterns.json
+    my-project-commits.json
+    ...
+ training-data/
+    compliance-data.jsonl
+    synthetic.jsonl
+    ...
+ models/
+    custom-coder/
+ cache/
+     cloned-repos/
 ```
 
 ## Integration with Continue

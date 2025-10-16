@@ -124,17 +124,17 @@ Before submitting a PR:
 
 ```
 ultimate-ai-coding-stack/
-├── install.sh              # Main installation script
-├── scripts/                # Utility scripts
-│   ├── memory-manager.sh   # Memory management
-│   └── generate-continue-config.sh
-├── configs/                # Configuration files
-│   ├── memory-schema.json  # Memory data schema
-│   └── memory-example.json # Example data
-├── templates/              # Project templates
-│   └── default-project/    # Default template
-├── docs/                   # Documentation
-└── .github/                # GitHub workflows
+ install.sh              # Main installation script
+ scripts/                # Utility scripts
+    memory-manager.sh   # Memory management
+    generate-continue-config.sh
+ configs/                # Configuration files
+    memory-schema.json  # Memory data schema
+    memory-example.json # Example data
+ templates/              # Project templates
+    default-project/    # Default template
+ docs/                   # Documentation
+ .github/                # GitHub workflows
 ```
 
 ## Adding New Features
@@ -191,5 +191,5 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-Thank you for contributing to Ultimate AI Coding Stack! 🚀
+Thank you for contributing to Ultimate AI Coding Stack! 
 

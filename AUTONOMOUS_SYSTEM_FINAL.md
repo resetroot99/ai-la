@@ -10,7 +10,7 @@ Not hype. Not demos. **Real solutions to real problems.**
 
 ## The 7 Constraints (And How We Lift Them)
 
-### 1. **Context Window Limits** ❌ → ✅ Persistent Knowledge Graph
+### 1. **Context Window Limits**  →  Persistent Knowledge Graph
 
 **Problem:** AI forgets your project after a few thousand tokens.
 
@@ -29,7 +29,7 @@ knowledge_graph = breaker.build_persistent_context(codebase_path)
 entity = breaker.get_entity("UserAuth")  # Remembers from weeks ago
 ```
 
-### 2. **No Real Understanding** ❌ → ✅ Business Logic Learning
+### 2. **No Real Understanding**  →  Business Logic Learning
 
 **Problem:** AI doesn't understand your business rules, just code patterns.
 
@@ -50,7 +50,7 @@ breaker.learn_business_logic(examples)
 # AI now understands WHY, not just HOW
 ```
 
-### 3. **Can't Handle Ambiguity** ❌ → ✅ Intelligent Clarification
+### 3. **Can't Handle Ambiguity**  →  Intelligent Clarification
 
 **Problem:** AI needs perfect specs or makes bad assumptions.
 
@@ -74,7 +74,7 @@ spec = breaker.resolve_ambiguity(vague)
 # }
 ```
 
-### 4. **No Error Recovery** ❌ → ✅ Autonomous Debugging
+### 4. **No Error Recovery**  →  Autonomous Debugging
 
 **Problem:** AI breaks on errors and can't fix itself.
 
@@ -94,7 +94,7 @@ result = breaker.autonomous_error_recovery(error, context)
 # Fixes error, stores solution for future
 ```
 
-### 5. **No Long-Term Planning** ❌ → ✅ Multi-Week Project Management
+### 5. **No Long-Term Planning**  →  Multi-Week Project Management
 
 **Problem:** AI can't manage projects longer than one session.
 
@@ -122,7 +122,7 @@ plan = breaker.create_multi_week_plan("Build SaaS platform")
 breaker.update_milestone_status("MVP", "complete")
 ```
 
-### 6. **No Real Testing** ❌ → ✅ Bug-Pattern Testing
+### 6. **No Real Testing**  →  Bug-Pattern Testing
 
 **Problem:** AI generates tests that don't catch real bugs.
 
@@ -144,7 +144,7 @@ tests = breaker.generate_real_tests(code_path)
 # - Security vulnerabilities
 ```
 
-### 7. **No Production Awareness** ❌ → ✅ Production Readiness Checks
+### 7. **No Production Awareness**  →  Production Readiness Checks
 
 **Problem:** AI doesn't know if code is production-ready.
 
@@ -227,13 +227,13 @@ breaker.update_project_plan(milestone, status)
 
 | Feature | This System | Cursor | Copilot | ChatGPT |
 |---------|-------------|--------|---------|---------|
-| **Infinite Context** | ✅ SQLite DB | ❌ 200K tokens | ❌ Limited | ❌ Limited |
-| **Business Logic** | ✅ Learns rules | ❌ No | ❌ No | ❌ No |
-| **Ambiguity Handling** | ✅ Clarifies | ❌ Guesses | ❌ Guesses | ⚠️ Asks |
-| **Auto Error Recovery** | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| **Long-Term Planning** | ✅ Multi-week | ❌ No | ❌ No | ❌ No |
-| **Real Testing** | ✅ Bug patterns | ⚠️ Basic | ⚠️ Basic | ⚠️ Basic |
-| **Production Checks** | ✅ Comprehensive | ❌ No | ❌ No | ❌ No |
+| **Infinite Context** |  SQLite DB |  200K tokens |  Limited |  Limited |
+| **Business Logic** |  Learns rules |  No |  No |  No |
+| **Ambiguity Handling** |  Clarifies |  Guesses |  Guesses |  Asks |
+| **Auto Error Recovery** |  Yes |  No |  No |  No |
+| **Long-Term Planning** |  Multi-week |  No |  No |  No |
+| **Real Testing** |  Bug patterns |  Basic |  Basic |  Basic |
+| **Production Checks** |  Comprehensive |  No |  No |  No |
 | **Cost** | $0 | $20/mo | $10-39/mo | $20/mo |
 
 ---
@@ -241,73 +241,73 @@ breaker.update_project_plan(milestone, status)
 ## Real-World Impact
 
 ### Before (Traditional AI Coding)
-- ❌ Forgets project context every session
-- ❌ Doesn't understand business logic
-- ❌ Makes bad assumptions
-- ❌ Breaks on errors
-- ❌ Can't manage long projects
-- ❌ Tests don't catch bugs
-- ❌ Code not production-ready
+-  Forgets project context every session
+-  Doesn't understand business logic
+-  Makes bad assumptions
+-  Breaks on errors
+-  Can't manage long projects
+-  Tests don't catch bugs
+-  Code not production-ready
 
 ### After (Constraint-Breaking System)
-- ✅ Perfect memory across months
-- ✅ Understands business rules
-- ✅ Resolves ambiguity intelligently
-- ✅ Self-healing on errors
-- ✅ Manages multi-week projects
-- ✅ Tests catch real bugs
-- ✅ Production-ready by default
+-  Perfect memory across months
+-  Understands business rules
+-  Resolves ambiguity intelligently
+-  Self-healing on errors
+-  Manages multi-week projects
+-  Tests catch real bugs
+-  Production-ready by default
 
 ---
 
 ## Technical Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                  Natural Language Input                 │
-└─────────────────────────────────────────────────────────┘
+
+                  Natural Language Input                 
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│            Constraint 3: Ambiguity Resolution           │
-│         Clarifies vague requirements intelligently      │
-└─────────────────────────────────────────────────────────┘
+
+            Constraint 3: Ambiguity Resolution           
+         Clarifies vague requirements intelligently      
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│         Constraint 1: Persistent Knowledge Graph        │
-│          Infinite context - remembers everything        │
-└─────────────────────────────────────────────────────────┘
+
+         Constraint 1: Persistent Knowledge Graph        
+          Infinite context - remembers everything        
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│          Constraint 2: Business Logic Learning          │
-│           Applies actual business rules to code         │
-└─────────────────────────────────────────────────────────┘
+
+          Constraint 2: Business Logic Learning          
+           Applies actual business rules to code         
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│         Constraint 5: Multi-Week Project Plan           │
-│            Breaks down into manageable tasks            │
-└─────────────────────────────────────────────────────────┘
+
+         Constraint 5: Multi-Week Project Plan           
+            Breaks down into manageable tasks            
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│                    Code Generation                      │
-│         (Using context + rules + plan)                  │
-└─────────────────────────────────────────────────────────┘
+
+                    Code Generation                      
+         (Using context + rules + plan)                  
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│        Constraint 4: Autonomous Error Recovery          │
-│              Fixes errors automatically                 │
-└─────────────────────────────────────────────────────────┘
+
+        Constraint 4: Autonomous Error Recovery          
+              Fixes errors automatically                 
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│          Constraint 6: Real Bug-Pattern Testing         │
-│            Tests for actual failure modes               │
-└─────────────────────────────────────────────────────────┘
+
+          Constraint 6: Real Bug-Pattern Testing         
+            Tests for actual failure modes               
+
                             ↓
-┌─────────────────────────────────────────────────────────┐
-│        Constraint 7: Production Readiness Check         │
-│          Ensures code is actually deployable            │
-└─────────────────────────────────────────────────────────┘
+
+        Constraint 7: Production Readiness Check         
+          Ensures code is actually deployable            
+
                             ↓
-                    ✅ Production App
+                     Production App
 ```
 
 ---
@@ -334,13 +334,13 @@ autonomous-agent "Build secure payment API"
 
 This is a **constraint-breaking autonomous system** that solves the fundamental problems blocking true AI autonomy:
 
-1. ✅ Infinite memory (no context limits)
-2. ✅ Real understanding (business logic)
-3. ✅ Intelligent clarification (handles ambiguity)
-4. ✅ Self-healing (error recovery)
-5. ✅ Long-term planning (multi-week projects)
-6. ✅ Real testing (catches actual bugs)
-7. ✅ Production awareness (deployment-ready)
+1.  Infinite memory (no context limits)
+2.  Real understanding (business logic)
+3.  Intelligent clarification (handles ambiguity)
+4.  Self-healing (error recovery)
+5.  Long-term planning (multi-week projects)
+6.  Real testing (catches actual bugs)
+7.  Production awareness (deployment-ready)
 
 **Built on 100% open source. Costs $0. Runs locally.**
 
@@ -357,5 +357,5 @@ This is a **constraint-breaking autonomous system** that solves the fundamental 
 
 The future of development is autonomous. This is how we get there.
 
-**No hype. Just solutions.** 🚀
+**No hype. Just solutions.** 
 

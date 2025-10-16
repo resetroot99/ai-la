@@ -53,8 +53,8 @@ class AILA_V2:
         self.workspace = Path(workspace).absolute()
         self.workspace.mkdir(parents=True, exist_ok=True)
         
-        print(f"🚀 AI-LA v{self.VERSION} - Autonomous Development Platform")
-        print(f"📁 Workspace: {self.workspace}\n")
+        print(f" AI-LA v{self.VERSION} - Autonomous Development Platform")
+        print(f" Workspace: {self.workspace}\n")
         
         # Initialize components
         self.generator = WorkingAutonomousAgent()
@@ -62,7 +62,7 @@ class AILA_V2:
         self.projects = AILAProjectManager(str(self.workspace / "projects"))
         self.monitor = AILAMonitor()
         
-        print("✓ All systems initialized\n")
+        print(" All systems initialized\n")
     
     def build(self, description: str, options: Dict = None) -> Dict:
         """
@@ -71,29 +71,29 @@ class AILA_V2:
         options = options or {}
         
         print(f"{'='*70}")
-        print(f"🤖 AI-LA v{self.VERSION} - Building Application")
+        print(f" AI-LA v{self.VERSION} - Building Application")
         print(f"{'='*70}\n")
-        print(f"📝 Description: {description}")
+        print(f" Description: {description}")
         
         # Start timing
         start_time = time.time()
         
         # Step 1: Get AI recommendations
-        print("\n🧠 Step 1: Analyzing with AI Learning System...")
+        print("\n Step 1: Analyzing with AI Learning System...")
         recommendations = self.learning.get_recommendations(description, options.get('framework'))
         
         if recommendations['framework'] and not options.get('framework'):
-            print(f"  ✓ Recommended framework: {recommendations['framework']}")
+            print(f"   Recommended framework: {recommendations['framework']}")
             options['framework'] = recommendations['framework']
         
         if recommendations['features']:
-            print(f"  ✓ Recommended features: {', '.join(recommendations['features'][:3])}")
+            print(f"   Recommended features: {', '.join(recommendations['features'][:3])}")
         
         if recommendations['warnings']:
-            print(f"  ⚠️  Warnings: {len(recommendations['warnings'])} potential issues detected")
+            print(f"    Warnings: {len(recommendations['warnings'])} potential issues detected")
         
         # Step 2: Generate application
-        print("\n⚡ Step 2: Generating application...")
+        print("\n Step 2: Generating application...")
         
         try:
             # Use minimal generator (proven)
@@ -103,15 +103,15 @@ class AILA_V2:
             generation_time = time.time() - start_time
             
             if result['success']:
-                print(f"  ✓ Generated in {generation_time:.2f}s")
+                print(f"   Generated in {generation_time:.2f}s")
                 files_count = len(result.get('files', []))
-                print(f"  ✓ Files: {files_count}")
+                print(f"   Files: {files_count}")
                 # Estimate lines (not tracked by minimal)
                 lines_count = files_count * 100
-                print(f"  ✓ Lines: ~{lines_count}")
+                print(f"   Lines: ~{lines_count}")
                 
                 # Step 3: Register project
-                print("\n📋 Step 3: Registering project...")
+                print("\n Step 3: Registering project...")
                 project_name = result['spec']['name']
                 project_id = self.projects.create_project(
                     name=project_name,
@@ -127,7 +127,7 @@ class AILA_V2:
                         self.projects.add_feature(project_id, feature)
                 
                 # Step 4: Record learning data
-                print("\n📚 Step 4: Recording learning data...")
+                print("\n Step 4: Recording learning data...")
                 gen_id = self.learning.record_generation({
                     'description': description,
                     'framework': options.get('framework', 'flask'),
@@ -136,10 +136,10 @@ class AILA_V2:
                     'tests_passed': True,
                     'code': str(result.get('code', ''))
                 })
-                print(f"  ✓ Learning record: {gen_id}")
+                print(f"   Learning record: {gen_id}")
                 
                 # Step 5: Track metrics
-                print("\n📊 Step 5: Tracking metrics...")
+                print("\n Step 5: Tracking metrics...")
                 self.monitor.track_generation(
                     project_name=project_name,
                     framework=options.get('framework', 'flask'),
@@ -148,18 +148,18 @@ class AILA_V2:
                     lines_count=lines_count,
                     success=True
                 )
-                print("  ✓ Metrics recorded")
+                print("   Metrics recorded")
                 
                 # Step 6: Deploy (if requested)
                 deployment = None
                 if options.get('deploy'):
-                    print("\n🚀 Step 6: Deploying application...")
+                    print("\n Step 6: Deploying application...")
                     deployer = AILADeployment(str(result['path']))
                     deployment = deployer.deploy(options.get('platform'))
                     
                     if deployment['success']:
-                        print(f"  ✓ Deployed to {deployment['platform']}")
-                        print(f"  ✓ URL: {deployment['url']}")
+                        print(f"   Deployed to {deployment['platform']}")
+                        print(f"   URL: {deployment['url']}")
                         
                         # Update project with deployment info
                         self.projects.update_project(
@@ -168,16 +168,16 @@ class AILA_V2:
                             deployment_url=deployment['url']
                         )
                     else:
-                        print(f"  ❌ Deployment failed: {deployment['error']}")
+                        print(f"   Deployment failed: {deployment['error']}")
                 
                 print(f"\n{'='*70}")
-                print(f"✅ BUILD COMPLETE")
+                print(f" BUILD COMPLETE")
                 print(f"{'='*70}\n")
-                print(f"📁 Project: {result['path']}")
-                print(f"⏱️  Time: {generation_time:.2f}s")
-                print(f"📊 Project ID: {project_id}")
+                print(f" Project: {result['path']}")
+                print(f"⏱  Time: {generation_time:.2f}s")
+                print(f" Project ID: {project_id}")
                 if deployment and deployment['success']:
-                    print(f"🌐 URL: {deployment['url']}")
+                    print(f" URL: {deployment['url']}")
                 print()
                 
                 return {
@@ -198,7 +198,7 @@ class AILA_V2:
                     context={'description': description}
                 )
                 
-                print(f"\n❌ Generation failed: {result.get('error')}")
+                print(f"\n Generation failed: {result.get('error')}")
                 return result
         
         except Exception as e:
@@ -210,7 +210,7 @@ class AILA_V2:
                 context={'description': description}
             )
             
-            print(f"\n❌ Exception: {e}")
+            print(f"\n Exception: {e}")
             return {
                 'success': False,
                 'error': str(e)
@@ -220,19 +220,19 @@ class AILA_V2:
         """
         Provide feedback on generated project
         """
-        print(f"\n📝 Recording feedback for project {project_id}...")
+        print(f"\n Recording feedback for project {project_id}...")
         
         # Get project details
         project = self.projects.get_project(project_id)
         if not project:
-            print(f"❌ Project {project_id} not found")
+            print(f" Project {project_id} not found")
             return
         
         # Find corresponding learning record
         # (In production, we'd track this mapping)
         self.learning.record_feedback(project_id, rating, comments)
         
-        print(f"✓ Feedback recorded")
+        print(f" Feedback recorded")
         print(f"  Rating: {rating}/5")
         print(f"  Comments: {comments}")
     
@@ -240,10 +240,10 @@ class AILA_V2:
         """List all projects"""
         projects = self.projects.list_projects(status)
         
-        print(f"\n📋 Projects ({len(projects)}):\n")
+        print(f"\n Projects ({len(projects)}):\n")
         
         for p in projects:
-            status_icon = "✅" if p['deployed'] else "📦"
+            status_icon = "" if p['deployed'] else ""
             print(f"{status_icon} {p['name']}")
             print(f"   Framework: {p['framework']}")
             print(f"   Created: {p['created_at']}")
@@ -256,12 +256,12 @@ class AILA_V2:
         status = self.projects.get_project_status(project_id)
         
         if not status:
-            print(f"❌ Project {project_id} not found")
+            print(f" Project {project_id} not found")
             return
         
         project = status['project']
         
-        print(f"\n📊 Project Status: {project['name']}\n")
+        print(f"\n Project Status: {project['name']}\n")
         print(f"Progress: {status['progress']}%")
         print(f"Features: {status['features']['completed']}/{status['features']['total']}")
         print(f"Tasks: {status['tasks']['completed']}/{status['tasks']['total']}")
@@ -274,11 +274,11 @@ class AILA_V2:
         """Show analytics dashboard"""
         dashboard = self.monitor.get_dashboard_data()
         
-        print(f"\n📊 AI-LA Analytics Dashboard\n")
+        print(f"\n AI-LA Analytics Dashboard\n")
         print(f"{'='*70}\n")
         
         gen_stats = dashboard['generation_stats']
-        print(f"📈 Generation Statistics (Last {days} days):")
+        print(f" Generation Statistics (Last {days} days):")
         print(f"  Total Generations: {gen_stats['total_generations']}")
         print(f"  Success Rate: {gen_stats['success_rate']}%")
         print(f"  Avg Time: {gen_stats['avg_generation_time']}s")
@@ -286,17 +286,17 @@ class AILA_V2:
         print(f"  Total Lines: {gen_stats['total_lines']:,}")
         print(f"  Most Used: {gen_stats['most_used_framework']}")
         
-        print(f"\n⚡ Performance Statistics:")
+        print(f"\n Performance Statistics:")
         perf_stats = dashboard['performance_stats']
         print(f"  Avg Duration: {perf_stats['avg_duration']}s")
         print(f"  Min Duration: {perf_stats['min_duration']}s")
         print(f"  Max Duration: {perf_stats['max_duration']}s")
         
-        print(f"\n🐛 Error Statistics:")
+        print(f"\n Error Statistics:")
         error_stats = dashboard['error_stats']
         print(f"  Total Errors: {error_stats['total_errors']}")
         
-        print(f"\n💡 Insights:")
+        print(f"\n Insights:")
         insights = self.monitor.get_insights()
         for insight in insights:
             print(f"  {insight}")

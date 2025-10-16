@@ -441,10 +441,10 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
         Deploy tested improvement to production
         """
         if not test_results['safe_to_deploy']:
-            print(f"❌ Improvement not safe to deploy")
+            print(f" Improvement not safe to deploy")
             return False
         
-        print(f"✅ Deploying improvement: {improvement['description']}")
+        print(f" Deploying improvement: {improvement['description']}")
         
         # Increment generation
         new_generation = self.generation + 1
@@ -490,8 +490,8 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
         # Update generation
         self.generation = new_generation
         
-        print(f"✓ Deployed as generation {new_generation}")
-        print(f"✓ Performance improvement: {test_results.get('performance_delta', 0):.1f}%")
+        print(f" Deployed as generation {new_generation}")
+        print(f" Performance improvement: {test_results.get('performance_delta', 0):.1f}%")
         
         return True
     
@@ -501,19 +501,19 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
         This is the autonomous self-improvement loop
         """
         print(f"\n{'='*70}")
-        print(f"🧠 AI-LA Neural Core - Evolution Cycle")
+        print(f" AI-LA Neural Core - Evolution Cycle")
         print(f"{'='*70}\n")
         print(f"Generation: {self.generation}")
         
         # Step 1: Analyze current performance
-        print("\n📊 Step 1: Analyzing performance...")
+        print("\n Step 1: Analyzing performance...")
         analysis = self.analyze_performance()
         
         print(f"  Performance Score: {analysis['performance_score']}/100")
         print(f"  Bottlenecks Found: {len(analysis['bottlenecks'])}")
         
         if not analysis['bottlenecks']:
-            print("\n✅ No bottlenecks found. System is optimal!")
+            print("\n No bottlenecks found. System is optimal!")
             return {
                 'evolved': False,
                 'reason': 'already_optimal',
@@ -521,13 +521,13 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
             }
         
         # Step 2: Generate improvements
-        print("\n🔬 Step 2: Generating improvements...")
+        print("\n Step 2: Generating improvements...")
         improvements = self.generate_improvements(analysis)
         
         print(f"  Generated {len(improvements)} potential improvements")
         
         # Step 3: Test each improvement
-        print("\n🧪 Step 3: Testing improvements...")
+        print("\n Step 3: Testing improvements...")
         successful_improvements = []
         
         for improvement in improvements:
@@ -535,13 +535,13 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
             
             if test_results['safe_to_deploy']:
                 successful_improvements.append((improvement, test_results))
-                print(f"  ✓ {improvement['description']}: PASS")
+                print(f"   {improvement['description']}: PASS")
             else:
-                print(f"  ✗ {improvement['description']}: FAIL")
+                print(f"   {improvement['description']}: FAIL")
         
         # Step 4: Deploy best improvement
         if successful_improvements:
-            print("\n🚀 Step 4: Deploying improvements...")
+            print("\n Step 4: Deploying improvements...")
             
             # Sort by performance delta
             successful_improvements.sort(
@@ -554,7 +554,7 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
             self.deploy_improvement(best_improvement, best_results)
             
             print(f"\n{'='*70}")
-            print(f"✅ EVOLUTION COMPLETE")
+            print(f" EVOLUTION COMPLETE")
             print(f"{'='*70}\n")
             print(f"Generation: {self.generation}")
             print(f"Improvement: {best_improvement['description']}")
@@ -568,7 +568,7 @@ def auto_recover_from_error(self, error: Exception, context: Dict) -> Dict:
             }
         
         else:
-            print("\n⚠️  No improvements passed testing")
+            print("\n  No improvements passed testing")
             return {
                 'evolved': False,
                 'reason': 'no_safe_improvements',
@@ -612,15 +612,15 @@ def main():
     result = core.evolve()
     
     if result['evolved']:
-        print(f"\n🎉 System evolved to generation {result['generation']}")
-        print(f"📈 Performance improved by {result['performance_gain']:.1f}%")
+        print(f"\n System evolved to generation {result['generation']}")
+        print(f" Performance improved by {result['performance_gain']:.1f}%")
     else:
-        print(f"\n✓ System is already optimal (score: {result.get('score', 0)}/100)")
+        print(f"\n System is already optimal (score: {result.get('score', 0)}/100)")
     
     # Show evolution history
     history = core.get_evolution_history()
     if history:
-        print(f"\n📜 Evolution History:")
+        print(f"\n Evolution History:")
         for entry in history:
             print(f"  Gen {entry['generation']}: {entry['description']} (+{entry['improvement']:.1f}%)")
 

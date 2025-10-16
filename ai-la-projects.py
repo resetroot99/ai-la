@@ -127,7 +127,7 @@ class AILAProjectManager:
         self.db.commit()
         project_id = c.lastrowid
         
-        print(f"✓ Created project: {name} (ID: {project_id})")
+        print(f" Created project: {name} (ID: {project_id})")
         return project_id
     
     def get_project(self, project_id: int = None, name: str = None) -> Optional[Dict]:
@@ -183,7 +183,7 @@ class AILAProjectManager:
         c.execute(query, values)
         self.db.commit()
         
-        print(f"✓ Updated project {project_id}")
+        print(f" Updated project {project_id}")
     
     def add_dependency(self, project_id: int, depends_on_id: int, 
                       dependency_type: str = 'requires'):
@@ -197,7 +197,7 @@ class AILAProjectManager:
         ''', (project_id, depends_on_id, dependency_type, datetime.now().isoformat()))
         
         self.db.commit()
-        print(f"✓ Added dependency: {project_id} depends on {depends_on_id}")
+        print(f" Added dependency: {project_id} depends on {depends_on_id}")
     
     def get_dependencies(self, project_id: int) -> List[Dict]:
         """Get all dependencies for a project"""
@@ -229,7 +229,7 @@ class AILAProjectManager:
         ''', (project_id, feature_name, datetime.now().isoformat()))
         
         self.db.commit()
-        print(f"✓ Added feature: {feature_name}")
+        print(f" Added feature: {feature_name}")
     
     def complete_feature(self, project_id: int, feature_name: str):
         """Mark feature as completed"""
@@ -242,7 +242,7 @@ class AILAProjectManager:
         ''', (datetime.now().isoformat(), project_id, feature_name))
         
         self.db.commit()
-        print(f"✓ Completed feature: {feature_name}")
+        print(f" Completed feature: {feature_name}")
     
     def get_features(self, project_id: int, status: str = None) -> List[Dict]:
         """Get project features"""
@@ -284,7 +284,7 @@ class AILAProjectManager:
         
         self.db.commit()
         task_id = c.lastrowid
-        print(f"✓ Added task: {task_description} (ID: {task_id})")
+        print(f" Added task: {task_description} (ID: {task_id})")
         return task_id
     
     def complete_task(self, task_id: int):
@@ -298,7 +298,7 @@ class AILAProjectManager:
         ''', (datetime.now().isoformat(), task_id))
         
         self.db.commit()
-        print(f"✓ Completed task {task_id}")
+        print(f" Completed task {task_id}")
     
     def get_tasks(self, project_id: int, status: str = None) -> List[Dict]:
         """Get project tasks"""
@@ -471,7 +471,7 @@ Generated: {datetime.now().isoformat()}
 """
         
         Path(output_file).write_text(report)
-        print(f"✓ Exported report to {output_file}")
+        print(f" Exported report to {output_file}")
 
 
 def main():

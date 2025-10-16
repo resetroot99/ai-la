@@ -58,56 +58,56 @@ class MaximumAutonomousSystem:
         options = options or {}
         
         print(f"\n{'='*70}")
-        print(f"🚀 MAXIMUM AUTONOMOUS SYSTEM")
+        print(f" MAXIMUM AUTONOMOUS SYSTEM")
         print(f"{'='*70}\n")
-        print(f"📝 Description: {description}")
-        print(f"⚙️  Options: {json.dumps(options, indent=2)}\n")
+        print(f" Description: {description}")
+        print(f"  Options: {json.dumps(options, indent=2)}\n")
         
         # Phase 1: Intelligent Analysis
         spec = self._analyze_requirements(description, options)
-        print(f"✓ Phase 1: Requirements analyzed")
+        print(f" Phase 1: Requirements analyzed")
         print(f"  - Type: {spec['type']}")
         print(f"  - Stack: {spec['stack']}")
         print(f"  - Features: {', '.join(spec['features'])}")
         
         # Phase 2: Architecture Design
         architecture = self._design_architecture(spec)
-        print(f"\n✓ Phase 2: Architecture designed")
+        print(f"\n Phase 2: Architecture designed")
         print(f"  - Components: {len(architecture['components'])}")
         print(f"  - Services: {len(architecture['services'])}")
         
         # Phase 3: Code Generation
         code = self._generate_full_codebase(spec, architecture)
-        print(f"\n✓ Phase 3: Code generated")
+        print(f"\n Phase 3: Code generated")
         print(f"  - Files: {len(code['files'])}")
         print(f"  - Lines: {code['total_lines']}")
         
         # Phase 4: Testing Suite
         tests = self._generate_comprehensive_tests(spec, code)
-        print(f"\n✓ Phase 4: Tests generated")
+        print(f"\n Phase 4: Tests generated")
         print(f"  - Test files: {len(tests)}")
         print(f"  - Test cases: {sum(t['count'] for t in tests)}")
         
         # Phase 5: Infrastructure
         infra = self._generate_infrastructure(spec, architecture)
-        print(f"\n✓ Phase 5: Infrastructure configured")
+        print(f"\n Phase 5: Infrastructure configured")
         print(f"  - Deployment: {infra['deployment_type']}")
         print(f"  - CI/CD: {infra['cicd']}")
         
         # Phase 6: Write Everything
         project_path = self._write_complete_project(spec, code, tests, infra)
-        print(f"\n✓ Phase 6: Project created")
+        print(f"\n Phase 6: Project created")
         print(f"  - Path: {project_path}")
         
         # Phase 7: Initialize & Validate
         self._initialize_project(project_path, spec)
-        print(f"\n✓ Phase 7: Project initialized")
+        print(f"\n Phase 7: Project initialized")
         
         # Phase 8: Deploy (if requested)
         deployment = None
         if options.get('deploy'):
             deployment = self._deploy_application(project_path, spec, infra)
-            print(f"\n✓ Phase 8: Deployed")
+            print(f"\n Phase 8: Deployed")
             print(f"  - URL: {deployment['url']}")
         
         # Phase 9: Register Project
@@ -119,7 +119,7 @@ class MaximumAutonomousSystem:
         })
         
         print(f"\n{'='*70}")
-        print(f"✅ COMPLETE: {spec['name']}")
+        print(f" COMPLETE: {spec['name']}")
         print(f"{'='*70}\n")
         
         return {
@@ -748,13 +748,13 @@ def main():
     result = system.build_full_application(description, options)
     
     if result['success']:
-        print(f"\n✅ Success! Your application is ready:")
+        print(f"\n Success! Your application is ready:")
         print(f"   {result['path']}")
         
         if result.get('deployment'):
-            print(f"\n🌐 Deployed at: {result['deployment']['url']}")
+            print(f"\n Deployed at: {result['deployment']['url']}")
     else:
-        print(f"\n❌ Build failed")
+        print(f"\n Build failed")
         sys.exit(1)
 
 

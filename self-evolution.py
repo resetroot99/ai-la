@@ -320,7 +320,7 @@ def main():
     
     if command == "stats":
         stats = engine.get_statistics()
-        print("\n🧠 Self-Evolution Statistics\n")
+        print("\n Self-Evolution Statistics\n")
         print(f"Total Builds: {stats['total_builds']}")
         print(f"Success Rate: {stats['success_rate']}%")
         print(f"Avg Quality Score: {stats['average_quality_score']}/100")
@@ -330,7 +330,7 @@ def main():
     
     elif command == "suggestions":
         suggestions = engine.get_improvement_suggestions()
-        print("\n💡 Improvement Suggestions\n")
+        print("\n Improvement Suggestions\n")
         for i, sug in enumerate(suggestions, 1):
             print(f"{i}. [{sug['priority'].upper()}] {sug['type']}")
             if sug['type'] == 'avoid_combination':
@@ -349,7 +349,7 @@ def main():
             LIMIT 10
         ''')
         
-        print("\n📚 Learned Patterns (Top 10)\n")
+        print("\n Learned Patterns (Top 10)\n")
         for row in c.fetchall():
             print(f"• {row[0]}: {row[2]} successes, {row[1]:.0%} confidence")
         print()

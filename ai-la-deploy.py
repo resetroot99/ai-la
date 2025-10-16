@@ -195,7 +195,7 @@ services:
     
     def deploy_docker(self) -> Dict:
         """Deploy using Docker"""
-        print("🐳 Deploying with Docker...")
+        print(" Deploying with Docker...")
         
         framework = self.detect_framework()
         
@@ -203,13 +203,13 @@ services:
         dockerfile = self.project_path / "Dockerfile"
         if not dockerfile.exists():
             dockerfile.write_text(self.generate_dockerfile(framework))
-            print("✓ Generated Dockerfile")
+            print(" Generated Dockerfile")
         
         # Generate docker-compose.yml
         compose_file = self.project_path / "docker-compose.yml"
         if not compose_file.exists():
             compose_file.write_text(self.generate_docker_compose(framework))
-            print("✓ Generated docker-compose.yml")
+            print(" Generated docker-compose.yml")
         
         # Build image
         result = subprocess.run(
@@ -220,7 +220,7 @@ services:
         )
         
         if result.returncode == 0:
-            print("✓ Docker image built successfully")
+            print(" Docker image built successfully")
             
             # Start containers
             result = subprocess.run(
@@ -231,7 +231,7 @@ services:
             )
             
             if result.returncode == 0:
-                print("✓ Containers started")
+                print(" Containers started")
                 
                 return {
                     'success': True,
@@ -247,7 +247,7 @@ services:
     
     def deploy_vercel(self) -> Dict:
         """Deploy to Vercel"""
-        print("▲ Deploying to Vercel...")
+        print(" Deploying to Vercel...")
         
         # Check if vercel CLI is installed
         result = subprocess.run(['which', 'vercel'], capture_output=True)
@@ -273,7 +273,7 @@ services:
                     url = line.strip()
                     break
             
-            print(f"✓ Deployed to Vercel: {url}")
+            print(f" Deployed to Vercel: {url}")
             
             return {
                 'success': True,
@@ -289,7 +289,7 @@ services:
     
     def deploy_flyio(self) -> Dict:
         """Deploy to Fly.io"""
-        print("🚀 Deploying to Fly.io...")
+        print(" Deploying to Fly.io...")
         
         # Check if flyctl is installed
         result = subprocess.run(['which', 'flyctl'], capture_output=True)
@@ -323,7 +323,7 @@ primary_region = "sjc"
   memory_mb = 256
 '''
             fly_config.write_text(config)
-            print("✓ Generated fly.toml")
+            print(" Generated fly.toml")
         
         # Launch app
         result = subprocess.run(
@@ -344,7 +344,7 @@ primary_region = "sjc"
             
             if result.returncode == 0:
                 url = f"https://ai-la-{self.project_path.name}.fly.dev"
-                print(f"✓ Deployed to Fly.io: {url}")
+                print(f" Deployed to Fly.io: {url}")
                 
                 return {
                     'success': True,
@@ -360,7 +360,7 @@ primary_region = "sjc"
     
     def deploy_kubernetes(self) -> Dict:
         """Deploy to Kubernetes"""
-        print("☸️  Deploying to Kubernetes...")
+        print("  Deploying to Kubernetes...")
         
         framework = self.detect_framework()
         app_name = self.project_path.name
@@ -413,7 +413,7 @@ spec:
 '''
         (k8s_dir / "service.yaml").write_text(service)
         
-        print("✓ Generated Kubernetes manifests")
+        print(" Generated Kubernetes manifests")
         
         # Apply manifests
         result = subprocess.run(
@@ -424,7 +424,7 @@ spec:
         )
         
         if result.returncode == 0:
-            print("✓ Deployed to Kubernetes")
+            print(" Deployed to Kubernetes")
             
             return {
                 'success': True,
@@ -511,11 +511,11 @@ def main():
     result = deployer.deploy(platform)
     
     if result['success']:
-        print(f"\n✅ Deployment successful!")
+        print(f"\n Deployment successful!")
         print(f"   Platform: {result['platform']}")
         print(f"   URL: {result['url']}")
     else:
-        print(f"\n❌ Deployment failed:")
+        print(f"\n Deployment failed:")
         print(f"   {result['error']}")
         sys.exit(1)
 

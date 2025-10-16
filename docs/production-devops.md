@@ -4,7 +4,7 @@
 
 This guide integrates the AI coding stack with production-grade DevOps tools for shipping real applications.
 
-## 🎯 Overview
+##  Overview
 
 Transform your AI coding stack into a **complete production pipeline**:
 
@@ -48,7 +48,7 @@ EOF
 # .git/hooks/pre-commit
 #!/bin/bash
 
-echo "🤖 Running AI code review..."
+echo " Running AI code review..."
 
 # Get staged changes
 DIFF=$(git diff --cached)
@@ -62,7 +62,7 @@ REVIEW=$(curl -s http://localhost:11434/api/generate -d "{
 
 # Check for critical issues
 if echo "$REVIEW" | grep -qi "critical\|security\|vulnerability"; then
-    echo "❌ AI found critical issues:"
+    echo " AI found critical issues:"
     echo "$REVIEW"
     echo ""
     read -p "Continue anyway? (y/N) " -n 1 -r
@@ -72,7 +72,7 @@ if echo "$REVIEW" | grep -qi "critical\|security\|vulnerability"; then
     fi
 fi
 
-echo "✅ AI review passed"
+echo " AI review passed"
 ```
 
 **Commit Message Generation**
@@ -161,7 +161,7 @@ jobs:
             \"stream\": false
           }" | jq -r .response)
           
-          echo "## 🤖 AI Code Review" >> review.md
+          echo "##  AI Code Review" >> review.md
           echo "" >> review.md
           echo "$REVIEW" >> review.md
           
@@ -266,7 +266,7 @@ npm i -g vercel
 cat > deploy-ai.sh << 'EOF'
 #!/bin/bash
 
-echo "🤖 AI-powered deployment starting..."
+echo " AI-powered deployment starting..."
 
 # AI analyzes project and suggests deployment config
 PROJECT_TYPE=$(curl -s http://localhost:11434/api/generate -d "{
@@ -308,7 +308,7 @@ ai-docker() {
         \"stream\": false
     }" | jq -r .response > Dockerfile
     
-    echo "✅ Dockerfile generated"
+    echo " Dockerfile generated"
 }
 
 # Generate docker-compose.yml
@@ -321,7 +321,7 @@ ai-compose() {
         \"stream\": false
     }" | jq -r .response > docker-compose.yml
     
-    echo "✅ docker-compose.yml generated"
+    echo " docker-compose.yml generated"
 }
 
 # Usage
@@ -360,7 +360,7 @@ ai-k8s() {
         \"stream\": false
     }" | jq -r .response > k8s-ingress.yaml
     
-    echo "✅ Kubernetes manifests generated"
+    echo " Kubernetes manifests generated"
 }
 
 # Deploy
@@ -387,7 +387,7 @@ brew install --cask warp
 # ~/.warp/workflows/ai-deploy.yaml
 name: AI Deploy
 command: |
-  echo "🤖 Starting AI deployment..."
+  echo " Starting AI deployment..."
   ./deploy-ai.sh
 description: Deploy with AI optimization
 ```
@@ -469,7 +469,7 @@ genscript() {
     }" | jq -r .response > script.sh
     
     chmod +x script.sh
-    echo "✅ Generated: script.sh"
+    echo " Generated: script.sh"
 }
 ```
 
@@ -523,7 +523,7 @@ ai-terraform() {
         \"stream\": false
     }" | jq -r .response > main.tf
     
-    echo "✅ Terraform config generated"
+    echo " Terraform config generated"
     terraform fmt
     terraform validate
 }
@@ -545,7 +545,7 @@ ai-ansible() {
         \"stream\": false
     }" | jq -r .response > playbook.yml
     
-    echo "✅ Ansible playbook generated"
+    echo " Ansible playbook generated"
     ansible-playbook --syntax-check playbook.yml
 }
 
@@ -606,11 +606,11 @@ ai-perf() {
 
 set -e
 
-echo "🚀 AI-Powered Production Pipeline"
+echo " AI-Powered Production Pipeline"
 echo "=================================="
 
 # 1. Code Review
-echo "📝 Step 1: AI Code Review..."
+echo " Step 1: AI Code Review..."
 DIFF=$(git diff main...HEAD)
 REVIEW=$(curl -s http://localhost:11434/api/generate -d "{
   \"model\": \"qwen2.5-coder:32b\",
@@ -619,12 +619,12 @@ REVIEW=$(curl -s http://localhost:11434/api/generate -d "{
 }" | jq -r .response)
 
 if echo "$REVIEW" | grep -qi "critical\|blocker"; then
-    echo "❌ Critical issues found. Aborting."
+    echo " Critical issues found. Aborting."
     exit 1
 fi
 
 # 2. Generate Tests
-echo "🧪 Step 2: Generating tests..."
+echo " Step 2: Generating tests..."
 for file in $(git diff --name-only main...HEAD); do
     if [[ $file =~ \.(js|ts|py)$ ]]; then
         CODE=$(cat "$file")
@@ -638,15 +638,15 @@ for file in $(git diff --name-only main...HEAD); do
 done
 
 # 3. Run Tests
-echo "✅ Step 3: Running tests..."
+echo " Step 3: Running tests..."
 npm test || pytest || go test ./...
 
 # 4. Build
-echo "🔨 Step 4: Building..."
+echo " Step 4: Building..."
 npm run build || make build
 
 # 5. Generate Dockerfile
-echo "🐳 Step 5: Generating Dockerfile..."
+echo " Step 5: Generating Dockerfile..."
 curl -s http://localhost:11434/api/generate -d "{
   \"model\": \"qwen2.5-coder:32b\",
   \"prompt\": \"Generate production Dockerfile for this project: $(ls -la)\",
@@ -654,18 +654,18 @@ curl -s http://localhost:11434/api/generate -d "{
 }" | jq -r .response > Dockerfile
 
 # 6. Build Docker image
-echo "📦 Step 6: Building Docker image..."
+echo " Step 6: Building Docker image..."
 docker build -t myapp:latest .
 
 # 7. Deploy
-echo "🚀 Step 7: Deploying..."
+echo " Step 7: Deploying..."
 kubectl set image deployment/myapp myapp=myapp:latest
 
 # 8. Monitor
-echo "📊 Step 8: Monitoring deployment..."
+echo " Step 8: Monitoring deployment..."
 kubectl rollout status deployment/myapp
 
-echo "✅ Deployment complete!"
+echo " Deployment complete!"
 ```
 
 ### VSCode Integration
@@ -730,13 +730,13 @@ ai-optimize-query() {
 
 ### Complete DevOps Stack
 
-✅ **Git Integration** - AI commits, reviews, branch management  
-✅ **CI/CD** - GitHub Actions, GitLab CI with AI  
-✅ **Deployment** - Vercel, Docker, Kubernetes with AI  
-✅ **Terminal** - Warp, tmux, shell integration  
-✅ **Servers** - SSH, Terraform, Ansible with AI  
-✅ **Monitoring** - Log analysis, performance tuning  
-✅ **Database** - Migrations, query optimization  
+ **Git Integration** - AI commits, reviews, branch management  
+ **CI/CD** - GitHub Actions, GitLab CI with AI  
+ **Deployment** - Vercel, Docker, Kubernetes with AI  
+ **Terminal** - Warp, tmux, shell integration  
+ **Servers** - SSH, Terraform, Ansible with AI  
+ **Monitoring** - Log analysis, performance tuning  
+ **Database** - Migrations, query optimization  
 
 ### Production Pipeline
 
@@ -744,5 +744,5 @@ ai-optimize-query() {
 Code → AI Review → Tests → Build → Docker → Deploy → Monitor
 ```
 
-**All powered by AI, all automated, all production-ready.** 🚀
+**All powered by AI, all automated, all production-ready.** 
 

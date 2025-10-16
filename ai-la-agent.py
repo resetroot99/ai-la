@@ -38,7 +38,7 @@ class AutonomousAgent:
         """
         Parse natural language description into structured task
         """
-        print(f"🧠 Parsing intent: {description}")
+        print(f" Parsing intent: {description}")
         
         # Use LLM to extract structured information
         prompt = f"""
@@ -60,7 +60,7 @@ Return JSON with:
         result = self._run_llm(prompt)
         try:
             task = json.loads(result)
-            print(f"✓ Parsed task: {task['app_name']}")
+            print(f" Parsed task: {task['app_name']}")
             return task
         except:
             # Fallback to basic parsing
@@ -77,7 +77,7 @@ Return JSON with:
         """
         Design system architecture based on task
         """
-        print(f"🏗️  Designing architecture for {task['app_name']}...")
+        print(f"  Designing architecture for {task['app_name']}...")
         
         prompt = f"""
 Design a production-ready architecture for this app:
@@ -104,7 +104,7 @@ Use best practices: TypeScript, FastAPI, PostgreSQL, Docker, security-first.
         result = self._run_llm(prompt)
         try:
             architecture = json.loads(result)
-            print(f"✓ Architecture designed: {len(architecture.get('components', []))} components")
+            print(f" Architecture designed: {len(architecture.get('components', []))} components")
             return architecture
         except:
             return {"components": [], "file_structure": {}, "dependencies": {}}
@@ -113,7 +113,7 @@ Use best practices: TypeScript, FastAPI, PostgreSQL, Docker, security-first.
         """
         Generate complete codebase using Aider
         """
-        print(f"💻 Generating code for {task['app_name']}...")
+        print(f" Generating code for {task['app_name']}...")
         
         # Create project directory
         project_path = self.project_dir / task['app_name']
@@ -143,14 +143,14 @@ Architecture: {json.dumps(architecture, indent=2)}
             # Use Aider to generate code
             self._run_aider(project_path, prompt)
         
-        print(f"✓ Code generation complete")
+        print(f" Code generation complete")
         return True
     
     def setup_infrastructure(self, task: Dict, architecture: Dict) -> bool:
         """
         Set up infrastructure (Docker, configs, etc.)
         """
-        print(f"⚙️  Setting up infrastructure...")
+        print(f"  Setting up infrastructure...")
         
         project_path = self.project_dir / task['app_name']
         
@@ -192,14 +192,14 @@ Include:
         env_content = "\n".join([f"{var}=" for var in env_vars])
         (project_path / ".env.example").write_text(env_content)
         
-        print(f"✓ Infrastructure setup complete")
+        print(f" Infrastructure setup complete")
         return True
     
     def deploy(self, task: Dict) -> Dict:
         """
         Deploy the application
         """
-        print(f"🚀 Deploying {task['app_name']}...")
+        print(f" Deploying {task['app_name']}...")
         
         project_path = self.project_dir / task['app_name']
         deployment = task.get('deployment', 'docker')
@@ -226,14 +226,14 @@ Include:
             }
         
         else:
-            print(f"⚠️  Deployment method '{deployment}' not yet implemented")
+            print(f"  Deployment method '{deployment}' not yet implemented")
             return {"status": "pending", "method": deployment}
     
     def test_and_validate(self, task: Dict) -> Dict:
         """
         Test the deployed application
         """
-        print(f"🧪 Testing {task['app_name']}...")
+        print(f" Testing {task['app_name']}...")
         
         project_path = self.project_dir / task['app_name']
         
@@ -261,14 +261,14 @@ Include test fixtures and mocks.
             "e2e": self._run_tests(project_path, "e2e")
         }
         
-        print(f"✓ Testing complete: {test_results}")
+        print(f" Testing complete: {test_results}")
         return test_results
     
     def learn_from_execution(self, task: Dict, results: Dict):
         """
         Learn from the execution to improve future tasks
         """
-        print(f"🧠 Learning from execution...")
+        print(f" Learning from execution...")
         
         # Record task history
         execution_record = {
@@ -297,7 +297,7 @@ Include test fixtures and mocks.
                 "patterns": self.learned_patterns
             }, f, indent=2)
         
-        print(f"✓ Learned from execution. Total patterns: {len(self.learned_patterns)}")
+        print(f" Learned from execution. Total patterns: {len(self.learned_patterns)}")
     
     def autonomous_build(self, description: str) -> Dict:
         """
@@ -305,7 +305,7 @@ Include test fixtures and mocks.
         Takes natural language description → deployed app
         """
         print(f"\n{'='*60}")
-        print(f"🤖 AUTONOMOUS BUILD STARTED")
+        print(f" AUTONOMOUS BUILD STARTED")
         print(f"{'='*60}\n")
         
         start_time = time.time()
@@ -315,10 +315,10 @@ Include test fixtures and mocks.
             task = self.parse_intent(description)
             
             # Step 1.5: Optimize with learned patterns
-            print(f"🧠 Applying learned optimizations...")
+            print(f" Applying learned optimizations...")
             task = self.evolution.optimize_for_task(task)
             if task.get('optimization_applied'):
-                print(f"✓ Applied pattern with {task['optimization_confidence']:.0%} confidence")
+                print(f" Applied pattern with {task['optimization_confidence']:.0%} confidence")
             
             # Step 2: Design architecture
             architecture = self.design_architecture(task)
@@ -366,19 +366,19 @@ Include test fixtures and mocks.
             
             # Show evolution stats
             stats = self.evolution.get_statistics()
-            print(f"\n📊 Evolution Stats: {stats['total_builds']} builds, {stats['success_rate']}% success rate")
+            print(f"\n Evolution Stats: {stats['total_builds']} builds, {stats['success_rate']}% success rate")
             
             print(f"\n{'='*60}")
-            print(f"✅ AUTONOMOUS BUILD COMPLETE")
+            print(f" AUTONOMOUS BUILD COMPLETE")
             print(f"{'='*60}\n")
-            print(f"📁 Project: {results['project_path']}")
-            print(f"🌐 URL: {deployment.get('url', 'N/A')}")
-            print(f"🧪 Tests: {test_results}")
+            print(f" Project: {results['project_path']}")
+            print(f" URL: {deployment.get('url', 'N/A')}")
+            print(f" Tests: {test_results}")
             
             return results
             
         except Exception as e:
-            print(f"\n❌ Autonomous build failed: {e}")
+            print(f"\n Autonomous build failed: {e}")
             return {"success": False, "error": str(e)}
     
     # Helper methods
@@ -431,13 +431,13 @@ def main():
     
     # Print final summary
     if results.get('success'):
-        print("\n🎉 Success! Your app is ready.")
+        print("\n Success! Your app is ready.")
         print(f"\nNext steps:")
         print(f"1. cd {results['project_path']}")
         print(f"2. Review the generated code")
         print(f"3. Access at: {results.get('deployment', {}).get('url', 'localhost')}")
     else:
-        print(f"\n❌ Build failed: {results.get('error')}")
+        print(f"\n Build failed: {results.get('error')}")
         sys.exit(1)
 
 

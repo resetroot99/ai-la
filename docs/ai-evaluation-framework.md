@@ -125,8 +125,8 @@ Runs all tests and generates comprehensive report.
 
 Shows improvement over time:
 ```
-📊 Improvement Summary
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Improvement Summary
+
 
 First Evaluation:  65/100
 Latest Evaluation: 82/100
@@ -318,19 +318,19 @@ If context understanding is low:
 
 ```
 ~/.ai-coding-stack/evaluation/
-├── benchmarks/
-│   └── standard_benchmark.json
-├── results/
-│   ├── code_quality_score.txt
-│   ├── context_understanding_score.txt
-│   ├── avg_response_time.txt
-│   ├── tokens_per_second.txt
-│   ├── benchmark_pass_rate.txt
-│   └── report_YYYYMMDD_HHMMSS.md
-└── history/
-    ├── evaluation_20250101_120000.json
-    ├── evaluation_20250108_120000.json
-    └── ...
+ benchmarks/
+    standard_benchmark.json
+ results/
+    code_quality_score.txt
+    context_understanding_score.txt
+    avg_response_time.txt
+    tokens_per_second.txt
+    benchmark_pass_rate.txt
+    report_YYYYMMDD_HHMMSS.md
+ history/
+     evaluation_20250101_120000.json
+     evaluation_20250108_120000.json
+     ...
 ```
 
 ### History Format
@@ -439,10 +439,10 @@ chmod +x ~/.ai-coding-stack/daily-improve.sh
 
 The AI Evaluation Framework provides:
 
-✅ **Objective Metrics** - Quantifiable improvement tracking  
-✅ **Comprehensive Testing** - Code quality, context, efficiency  
-✅ **Progress Tracking** - Historical comparison  
-✅ **Actionable Insights** - Specific recommendations  
-✅ **Automated Monitoring** - Continuous evaluation  
+ **Objective Metrics** - Quantifiable improvement tracking  
+ **Comprehensive Testing** - Code quality, context, efficiency  
+ **Progress Tracking** - Historical comparison  
+ **Actionable Insights** - Specific recommendations  
+ **Automated Monitoring** - Continuous evaluation  
 
 **Result: Data-driven AI improvement with measurable results.**
