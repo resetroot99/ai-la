@@ -12,6 +12,8 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 import asyncio
+import time
+from self_evolution import SelfEvolutionEngine
 
 class AutonomousAgent:
     """
@@ -28,6 +30,9 @@ class AutonomousAgent:
         # Task memory
         self.task_history = []
         self.learned_patterns = []
+        
+        # Self-evolution engine
+        self.evolution = SelfEvolutionEngine()
         
     def parse_intent(self, description: str) -> Dict:
         """
@@ -303,9 +308,17 @@ Include test fixtures and mocks.
         print(f"🤖 AUTONOMOUS BUILD STARTED")
         print(f"{'='*60}\n")
         
+        start_time = time.time()
+        
         try:
             # Step 1: Parse intent
             task = self.parse_intent(description)
+            
+            # Step 1.5: Optimize with learned patterns
+            print(f"🧠 Applying learned optimizations...")
+            task = self.evolution.optimize_for_task(task)
+            if task.get('optimization_applied'):
+                print(f"✓ Applied pattern with {task['optimization_confidence']:.0%} confidence")
             
             # Step 2: Design architecture
             architecture = self.design_architecture(task)
@@ -323,14 +336,37 @@ Include test fixtures and mocks.
             test_results = self.test_and_validate(task)
             
             # Step 7: Learn from execution
+            duration = time.time() - start_time
+            
             results = {
                 "success": code_success and infra_success,
                 "deployment": deployment,
                 "tests": test_results,
-                "project_path": str(self.project_dir / task['app_name'])
+                "project_path": str(self.project_dir / task['app_name']),
+                "duration_seconds": duration
             }
             
             self.learn_from_execution(task, results)
+            
+            # Step 8: Record in evolution system
+            build_data = {
+                "description": description,
+                "task_type": task.get('type'),
+                "tech_stack": task.get('tech_stack'),
+                "success": results['success'],
+                "duration_seconds": duration,
+                "code_quality_score": 85 if results['success'] else 0,  # TODO: actual scoring
+                "test_pass_rate": test_results.get('unit', {}).get('passed', False) * 100,
+                "deployment_success": deployment.get('status') == 'deployed',
+                "architecture": task.get('architecture')
+            }
+            
+            build_id = self.evolution.record_build(build_data)
+            self.evolution.extract_patterns(build_id, build_data)
+            
+            # Show evolution stats
+            stats = self.evolution.get_statistics()
+            print(f"\n📊 Evolution Stats: {stats['total_builds']} builds, {stats['success_rate']}% success rate")
             
             print(f"\n{'='*60}")
             print(f"✅ AUTONOMOUS BUILD COMPLETE")
